@@ -1,0 +1,101 @@
+.navbar {
+  width: 20%;
+  background-color: #f8f9fa;
+  height: 100vh;
+  padding: 20px;
+  position: fixed;
+}
+
+.logo h1 {
+  font-size: 24px;
+  margin-bottom: 40px;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li {
+  margin-bottom: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  font-size: 18px;
+  color: #333;
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  background-color: #dee2e6;
+}
+
+.logout {
+  margin-top: 40px;
+}
+
+.logout a {
+  color: red;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+}
+
+/* DashboardPage.css */
+.dashboard {
+  display: flex;
+}
+
+.dashboard-content {
+  margin-left: 30%;
+  padding: 20px;
+  width: 80%;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stat-box {
+  background-color: #e9ecef;
+  padding: 20px;
+  border-radius: 8px;
+  width: 30%;
+  text-align: center;
+}
+
+.stat-box h3 {
+  font-size: 32px;
+  margin: 0;
+}
+
+.stat-box p {
+  margin: 10px 0 0;
+  color: #6c757d;
+}
+
+.trending-quizzes {
+  margin-top: 40px;
+}
+
+.trending-quizzes h2 {
+  margin-bottom: 20px;
+}
+
+.trending-quizzes ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.trending-quizzes ul li {
+  background-color: #f8f9fa;
+  padding: 20px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}

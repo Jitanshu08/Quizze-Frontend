@@ -1,0 +1,105 @@
+/* AnalyticsPage.css */
+.analytics-container {
+    display: flex;
+  }
+  
+  .navbar {
+    width: 20%;
+    background-color: #f8f9fa;
+    height: 100vh;
+    padding: 20px;
+    position: fixed;
+  }
+  
+  .logo h1 {
+    font-size: 24px;
+    margin-bottom: 40px;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  nav ul li {
+    margin-bottom: 20px;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  nav ul li a.active {
+    font-weight: bold;
+    color: #000;
+  }
+  
+  .logout {
+    margin-top: 40px;
+  }
+  
+  .logout a {
+    color: red;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .analytics-content {
+    margin-left: 25%;
+    padding: 20px;
+    width: 70%;
+  }
+  
+  .analytics-content h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  table th,
+  table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+  }
+  
+  table th {
+    background-color: #f1f1f1;
+  }
+  
+  table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .add-more-text {
+    color: #6c757d;
+    text-align: center;
+    font-style: italic;
+    margin-top: 20px;
+  }
+  
