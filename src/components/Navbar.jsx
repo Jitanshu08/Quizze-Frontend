@@ -1,8 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../css/Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ onCreateQuiz }) => {
+  // Accept onCreateQuiz as a prop
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    console.log("Token after logout:", localStorage.getItem("token")); // Should be null
+    navigate("/login", { replace: true });
+  };
+
   return (
     <div className="navbar">
       <div className="logo">
@@ -17,12 +26,15 @@ const Navbar = () => {
             <Link to="/analytics">Analytics</Link>
           </li>
           <li>
-            <Link to="/create-quiz">Create Quiz</Link>
+            {/* Call the onCreateQuiz function when the link is clicked */}
+            <a href="#" onClick={onCreateQuiz}>
+              Create Quiz
+            </a>
           </li>
         </ul>
       </nav>
       <div className="logout">
-        <Link to="/logout">LOGOUT</Link>
+        <button onClick={handleLogout}>LOGOUT</button>
       </div>
     </div>
   );

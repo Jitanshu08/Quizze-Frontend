@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import axios from "axios";
+import CreateQuizModal from "../components/CreateQuizModal"; // Import the CreateQuizModal component
 
 const DashboardPage = () => {
   const [quizData, setQuizData] = useState({
@@ -9,13 +10,13 @@ const DashboardPage = () => {
     totalImpressions: 0,
     trendingQuizzes: [],
   });
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
 
   useEffect(() => {
-    // Fetch the data from the backend using Axios
     axios
       .get("http://localhost:5000/api/quizzes/dashboard-data", {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`, // Fetches the token from localStorage
+          Authorization: `Bearer ${localStorage.getItem("token")}`, 
         },
       })
       .then((response) => {
@@ -38,9 +39,24 @@ const DashboardPage = () => {
       });
   }, []);
 
+  const handleOpenModal = () => {
+    setIsModalOpen(true); // Open the modal
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false); // Close the modal
+  };
+
+  const handleContinue = (quizName, quizType) => {
+    console.log("Quiz Name:", quizName);
+    console.log("Quiz Type:", quizType);
+    setIsModalOpen(false);
+    // Proceed with the next steps (e.g., quiz creation form based on the selected type)
+  };
+
   return (
     <div className="dashboard">
-      <Navbar />
+      <Navbar onCreateQuiz={handleOpenModal} /> {/* Pass the function as a prop */}
       <div className="dashboard-content">
         <div className="stats">
           <div className="stat-box">
@@ -75,6 +91,9 @@ const DashboardPage = () => {
           </ul>
         </div>
       </div>
+      {isModalOpen && (
+        <CreateQuizModal onClose={handleCloseModal} onContinue={handleContinue} />
+      )}
     </div>
   );
 };

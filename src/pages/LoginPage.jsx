@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../css/login.css";
@@ -16,6 +16,8 @@ const LoginPage = () => {
     email: "",
     password: "",
   });
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // New state for login status
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,13 +49,21 @@ const LoginPage = () => {
         localStorage.setItem("token", response.data.token);
 
         alert("Login successful!");
-        navigate("/dashboard"); // Redirect to dashboard after login
+
+        setIsLoggedIn(true); // Set login status to true
       } catch (error) {
         console.error("Error during login:", error.response.data);
         alert("Login failed. Please check your credentials and try again.");
       }
     }
   };
+
+  // Use useEffect to navigate after login
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/dashboard");
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <div className="form-container">

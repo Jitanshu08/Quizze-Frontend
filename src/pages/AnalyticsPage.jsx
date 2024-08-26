@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Navbar from "../components/Navbar";
 import "../css/analytics.css";
+import CreateQuizModal from "../components/CreateQuizModal"; // Import CreateQuizModal
 
 function AnalyticsPage() {
   const [quizzes, setQuizzes] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
 
   useEffect(() => {
     const fetchQuizzes = async () => {
       try {
-        const token = localStorage.getItem("token"); 
+        const token = localStorage.getItem("token");
 
         if (!token) {
           throw new Error("No token found");
@@ -31,31 +34,24 @@ function AnalyticsPage() {
     fetchQuizzes();
   }, []);
 
+  const handleOpenModal = () => {
+    setIsModalOpen(true); // Open the modal
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false); // Close the modal
+  };
+
+  const handleContinue = (quizName, quizType) => {
+    console.log("Quiz Name:", quizName);
+    console.log("Quiz Type:", quizType);
+    setIsModalOpen(false);
+    // Proceed with the next steps (e.g., quiz creation form based on the selected type)
+  };
+
   return (
     <div className="analytics-container">
-      <div className="navbar">
-        <div className="logo">
-          <h1>QUIZZIE</h1>
-        </div>
-        <nav>
-          <ul>
-            <li>
-              <a href="/dashboard">Dashboard</a>
-            </li>
-            <li>
-              <a href="#" className="active">
-                Analytics
-              </a>
-            </li>
-            <li>
-              <a href="#">Create Quiz</a>
-            </li>
-          </ul>
-        </nav>
-        <div className="logout">
-          <a href="#">LOGOUT</a>
-        </div>
-      </div>
+      <Navbar onCreateQuiz={handleOpenModal} /> {/* Pass the function as a prop */}
       <div className="analytics-content">
         <h2>Quiz Analysis</h2>
         <table>
@@ -90,6 +86,9 @@ function AnalyticsPage() {
         </table>
         <p className="add-more-text">{"{more quiz can be added}"}</p>
       </div>
+      {isModalOpen && (
+        <CreateQuizModal onClose={handleCloseModal} onContinue={handleContinue} />
+      )}
     </div>
   );
 }
