@@ -1,0 +1,76 @@
+/* quizAnalysis.css */
+.quiz-analysis-wrapper {
+  display: flex;
+}
+
+.quiz-analysis-container {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-left: 25%;
+}
+
+.quiz-analysis-content {
+  padding: 20px;
+}
+
+.quiz-analysis-content h2 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #3a77f3;
+  margin-bottom: 10px;
+}
+
+.quiz-metadata {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.quiz-metadata p {
+  margin-left: 15px;
+  font-size: 14px;
+  color: #f26d21;
+}
+
+.analysis-section {
+  margin-top: 20px;
+}
+
+.analysis-item {
+  background-color: #f7f7f7;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.analysis-item h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.analysis-stats {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stat-box {
+  width: 32%;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.stat-box p:first-child {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.stat-box p:last-child {
+  font-size: 14px;
+  color: #777;
+}
