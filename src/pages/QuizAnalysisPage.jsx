@@ -32,6 +32,7 @@ const QuizAnalysisPage = () => {
       try {
         const token = localStorage.getItem("token");
 
+        // Fetching analysis data without increasing impressions
         const response = await axios.get(
           `http://localhost:5000/api/quizzes/analysis/${quizId}`,
           {
@@ -46,8 +47,8 @@ const QuizAnalysisPage = () => {
       }
     };
 
-    fetchQuizData();
-    fetchAnalysisData();
+    fetchQuizData(); 
+    fetchAnalysisData(); 
   }, [quizId]);
 
   return (
