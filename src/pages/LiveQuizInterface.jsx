@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "../css/liveQuizInterface.css";
 
 const LiveQuizInterface = () => {
-  const { quizId } = useParams(); // This will get the quiz ID from the URL
+  const { quizId } = useParams();
   const [quizData, setQuizData] = useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -21,7 +21,10 @@ const LiveQuizInterface = () => {
         setQuizData(response.data);
 
         // Only set the timer if it's a Q&A quiz
-        if (response.data.quizCategory === "Q&A" && response.data.questions[0].timer) {
+        if (
+          response.data.quizCategory === "Q&A" &&
+          response.data.questions[0].timer
+        ) {
           setTimer(response.data.questions[0].timer);
         }
       } catch (error) {
@@ -49,9 +52,20 @@ const LiveQuizInterface = () => {
 
   const handleNextOrSubmit = async () => {
     const currentQuestion = quizData.questions[currentQuestionIndex];
+    let updatedScore = score; 
 
     try {
       if (selectedOption !== null) {
+        // Check if the selected option is correct for Q&A quizzes
+        if (
+          quizData.quizCategory === "Q&A" &&
+          selectedOption === currentQuestion.correctOption
+        ) {
+          updatedScore += 1; 
+          setScore(updatedScore); 
+        }
+
+        
         await axios.post(
           `http://localhost:5000/api/quizzes/response/${quizId}`,
           {
@@ -63,16 +77,8 @@ const LiveQuizInterface = () => {
             ],
           }
         );
-
-        // For Q&A quiz, check if the selected option is correct
-        if (
-          quizData.quizCategory === "Q&A" &&
-          selectedOption === currentQuestion.correctOption
-        ) {
-          setScore((prevScore) => prevScore + 1);
-        }
       } else {
-        // Mark as incorrect if timer runs out and no option is selected
+        // If no option selected or timer ran out, mark as incorrect
         await axios.post(
           `http://localhost:5000/api/quizzes/response/${quizId}`,
           {
@@ -96,13 +102,16 @@ const LiveQuizInterface = () => {
           setTimer(null);
         }
       } else {
-        // Navigate to the completion page with the final score
+        // Navigate to the appropriate completion page with the final score
         if (quizData.quizCategory === "Q&A") {
           navigate("/quiz-completion", {
-            state: { score, totalQuestions: quizData.questions.length },
+            state: {
+              score: updatedScore, 
+              totalQuestions: quizData.questions.length,
+            },
           });
         } else {
-          navigate("/poll-completion"); // Navigate to Poll completion page
+          navigate("/poll-completion");
         }
       }
     } catch (error) {
@@ -120,7 +129,6 @@ const LiveQuizInterface = () => {
       <h2>{quizData.title}</h2>
       <div className="question-container">
         <h3>{quizData.questions[currentQuestionIndex].text}</h3>
-        {/* Display timer only for Q&A quizzes */}
         {quizData.quizCategory === "Q&A" && timer !== null && (
           <div className="timer">Time Left: {timer}s</div>
         )}

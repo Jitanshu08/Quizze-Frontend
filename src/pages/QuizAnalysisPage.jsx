@@ -46,8 +46,8 @@ const QuizAnalysisPage = () => {
       }
     };
 
-    fetchQuizData(); 
-    fetchAnalysisData(); 
+    fetchQuizData();
+    fetchAnalysisData();
   }, [quizId]);
 
   return (
@@ -73,7 +73,11 @@ const QuizAnalysisPage = () => {
                 <h3>
                   Q.{index + 1} {analysis.question}
                 </h3>
-                <div className={`analysis-stats ${quizData.quizCategory === 'Poll' ? 'poll-type' : ''}`}>
+                <div
+                  className={`analysis-stats ${
+                    quizData.quizCategory === "Poll" ? "poll-type" : ""
+                  }`}
+                >
                   {quizData.quizCategory === "Q&A" ? (
                     <>
                       <div className="stat-box">
