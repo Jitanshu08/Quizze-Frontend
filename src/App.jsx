@@ -5,6 +5,9 @@ import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
 import AnalyticsPage from "./pages/AnalyticsPage";
 import QuizAnalysisPage from "./pages/QuizAnalysisPage";
+import LiveQuizInterface from "./pages/LiveQuizInterface";
+import QuizCompletionPage from "./pages/QuizCompletionPage";
+import PollCompletionPage from "./pages/PollCompletionPage";
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/analytics" element={<AnalyticsPage />} />
         <Route path="/quiz-analysis/:quizId" element={<QuizAnalysisPage />} />
+        <Route path="/quiz/:quizId" element={<LiveQuizInterface />} />
+        <Route path="/quiz-completion" element={<QuizCompletionPage />} />
+        <Route path="/poll-completion" element={<PollCompletionPage />} />
       </Routes>
     </Router>
   );

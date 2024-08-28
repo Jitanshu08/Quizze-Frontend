@@ -1,0 +1,19 @@
+.poll-completion-container {
+    background-color: #1A2E35; /* Royal blue background */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.poll-completion-box {
+    background-color: #ffffff; /* White box */
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.poll-completion-box h2 {
+    font-size: 24px;
+    color: #333333;
+}

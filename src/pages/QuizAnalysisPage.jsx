@@ -32,7 +32,6 @@ const QuizAnalysisPage = () => {
       try {
         const token = localStorage.getItem("token");
 
-        // Fetching analysis data without increasing impressions
         const response = await axios.get(
           `http://localhost:5000/api/quizzes/analysis/${quizId}`,
           {
@@ -74,19 +73,30 @@ const QuizAnalysisPage = () => {
                 <h3>
                   Q.{index + 1} {analysis.question}
                 </h3>
-                <div className="analysis-stats">
-                  <div className="stat-box">
-                    <p>{analysis.attempted}</p>
-                    <p>people Attempted the question</p>
-                  </div>
-                  <div className="stat-box">
-                    <p>{analysis.correct}</p>
-                    <p>people Answered Correctly</p>
-                  </div>
-                  <div className="stat-box">
-                    <p>{analysis.incorrect}</p>
-                    <p>people Answered Incorrectly</p>
-                  </div>
+                <div className={`analysis-stats ${quizData.quizCategory === 'Poll' ? 'poll-type' : ''}`}>
+                  {quizData.quizCategory === "Q&A" ? (
+                    <>
+                      <div className="stat-box">
+                        <p>{analysis.attempted}</p>
+                        <p>people Attempted the question</p>
+                      </div>
+                      <div className="stat-box">
+                        <p>{analysis.correct}</p>
+                        <p>people Answered Correctly</p>
+                      </div>
+                      <div className="stat-box">
+                        <p>{analysis.incorrect}</p>
+                        <p>people Answered Incorrectly</p>
+                      </div>
+                    </>
+                  ) : (
+                    analysis.options.map((optionData, optIndex) => (
+                      <div key={optIndex} className="stat-box">
+                        <p>{optionData.count}</p>
+                        <p>{optionData.option}</p>
+                      </div>
+                    ))
+                  )}
                 </div>
               </div>
             ))}
