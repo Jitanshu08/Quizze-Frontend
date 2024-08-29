@@ -20,11 +20,8 @@ const LiveQuizInterface = () => {
         );
         setQuizData(response.data);
 
-        // Only set the timer if it's a Q&A quiz
-        if (
-          response.data.quizCategory === "Q&A" &&
-          response.data.questions[0].timer
-        ) {
+        // Set the timer for both Q&A and Poll quizzes
+        if (response.data.questions[0].timer) {
           setTimer(response.data.questions[0].timer);
         }
       } catch (error) {
@@ -52,7 +49,7 @@ const LiveQuizInterface = () => {
 
   const handleNextOrSubmit = async () => {
     const currentQuestion = quizData.questions[currentQuestionIndex];
-    let updatedScore = score; 
+    let updatedScore = score;
 
     try {
       if (selectedOption !== null) {
@@ -61,11 +58,11 @@ const LiveQuizInterface = () => {
           quizData.quizCategory === "Q&A" &&
           selectedOption === currentQuestion.correctOption
         ) {
-          updatedScore += 1; 
-          setScore(updatedScore); 
+          updatedScore += 1;
+          setScore(updatedScore);
         }
 
-        
+        // Submit the current response immediately
         await axios.post(
           `http://localhost:5000/api/quizzes/response/${quizId}`,
           {
@@ -96,7 +93,7 @@ const LiveQuizInterface = () => {
         setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
         setSelectedOption(null);
         const nextQuestion = quizData.questions[currentQuestionIndex + 1];
-        if (quizData.quizCategory === "Q&A" && nextQuestion.timer) {
+        if (nextQuestion.timer) {
           setTimer(nextQuestion.timer);
         } else {
           setTimer(null);
@@ -106,7 +103,7 @@ const LiveQuizInterface = () => {
         if (quizData.quizCategory === "Q&A") {
           navigate("/quiz-completion", {
             state: {
-              score: updatedScore, 
+              score: updatedScore,
               totalQuestions: quizData.questions.length,
             },
           });
@@ -129,9 +126,7 @@ const LiveQuizInterface = () => {
       <h2>{quizData.title}</h2>
       <div className="question-container">
         <h3>{quizData.questions[currentQuestionIndex].text}</h3>
-        {quizData.quizCategory === "Q&A" && timer !== null && (
-          <div className="timer">Time Left: {timer}s</div>
-        )}
+        {timer !== null && <div className="timer">Time Left: {timer}s</div>}
         <div className="options-container">
           {quizData.questions[currentQuestionIndex].options.map(
             (option, index) => (
