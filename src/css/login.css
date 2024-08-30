@@ -33,7 +33,7 @@
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
-  gap: 50px;
+  gap: 10px;
 }
 
 .login-form-switch button {
@@ -54,6 +54,11 @@
   border-radius: 5px;
   box-shadow: 0 4px 20px rgba(80, 80, 255, 0.5);
   width: 217px;
+}
+.login-form-switch button:hover {
+  background-color: rgba(224, 224, 224, 1); 
+  color: rgba(71, 68, 68, 1); 
+  text-decoration: none; 
 }
 
 /* Form group styling */
@@ -89,12 +94,12 @@
 }
 
 .login-form-group input.login-error-input {
-  border: 1px solid rgba(214, 0, 0, 1); /* Red border for error */
+  border: 1px solid rgba(214, 0, 0, 1); 
 }
 
 /* Placeholder error styling */
 .login-form-group input.login-error-input::placeholder {
-  color: #e74c3c; /* Red color for error placeholder */
+  color: #e74c3c; 
 }
 
 /* Submit button styling */

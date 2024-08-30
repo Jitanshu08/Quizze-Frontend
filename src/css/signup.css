@@ -33,7 +33,7 @@ body {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
-  gap: 50px;
+  gap: 10px;
 }
 
 .signup-form-switch button {
@@ -54,6 +54,11 @@ body {
   border-radius: 5px;
   box-shadow: 0 4px 20px rgba(80, 80, 255, 0.5);
   width: 217px;
+}
+.signup-form-switch button:hover {
+  background-color: rgba(224, 224, 224, 1); 
+  color: rgba(71, 68, 68, 1); 
+  text-decoration: none; 
 }
 
 /* Form group styling */
@@ -91,12 +96,12 @@ body {
 /* Error input field styling */
 .signup-form-group input.signup-error-input {
   border: 1px solid rgba(214, 0, 0, 1);
-  color: #e74c3c; /* This changes the text color inside the input when an error occurs */
+  color: #e74c3c; 
 }
 
 /* Placeholder styling when there is an error */
 .signup-form-group input.signup-error-input::placeholder {
-  color: #e74c3c; /* Red color for placeholder text */
+  color: #e74c3c; 
 }
 
 /* Error text styling */
