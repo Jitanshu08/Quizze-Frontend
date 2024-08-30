@@ -17,12 +17,17 @@ const LoginPage = () => {
     password: "",
   });
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // New state for login status
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    setErrors({ ...errors, [name]: "" }); // Clear errors on input change
+    setErrors({ ...errors, [name]: "" });
+  };
+
+  const handleFocus = (e) => {
+    const { name } = e.target;
+    setErrors({ ...errors, [name]: "" });
   };
 
   const validate = () => {
@@ -43,14 +48,10 @@ const LoginPage = () => {
           "http://localhost:5000/api/auth/login",
           formData
         );
-        console.log("User logged in:", response.data);
 
-        // Store the JWT token in localStorage
         localStorage.setItem("token", response.data.token);
-
         alert("Login successful!");
-
-        setIsLoggedIn(true); // Set login status to true
+        setIsLoggedIn(true);
       } catch (error) {
         console.error("Error during login:", error.response.data);
         alert("Login failed. Please check your credentials and try again.");
@@ -58,7 +59,6 @@ const LoginPage = () => {
     }
   };
 
-  // Use useEffect to navigate after login
   useEffect(() => {
     if (isLoggedIn) {
       navigate("/dashboard");
@@ -93,11 +93,10 @@ const LoginPage = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
+              onFocus={handleFocus}
               className={errors.email ? "login-error-input" : ""}
+              placeholder={errors.email || ""}
             />
-            {errors.email && (
-              <span className="login-error-text">{errors.email}</span>
-            )}
           </div>
           <div className="login-form-group">
             <label>Password</label>
@@ -106,11 +105,10 @@ const LoginPage = () => {
               name="password"
               value={formData.password}
               onChange={handleChange}
+              onFocus={handleFocus}
               className={errors.password ? "login-error-input" : ""}
+              placeholder={errors.password || ""}
             />
-            {errors.password && (
-              <span className="login-error-text">{errors.password}</span>
-            )}
           </div>
           <button type="submit" className="login-submit-btn">
             Log In

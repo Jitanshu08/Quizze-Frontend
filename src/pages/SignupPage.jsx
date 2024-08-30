@@ -24,14 +24,26 @@ const SignupPage = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    setErrors({ ...errors, [name]: "" }); // Clear errors on input change
+
+    // Clear the error when the user starts typing
+    setErrors({ ...errors, [name]: "" });
+  };
+
+  const handleFocus = (e) => {
+    const { name } = e.target;
+    setErrors({ ...errors, [name]: "" });
   };
 
   const validate = () => {
     const newErrors = {};
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,6}(?:\.[a-zA-Z]{2,6})?$/;
 
     if (!formData.username) newErrors.username = "Invalid name";
-    if (!formData.email) newErrors.email = "Invalid Email";
+    if (!formData.email) {
+      newErrors.email = "Email is required";
+    } else if (!emailPattern.test(formData.email)) {
+      newErrors.email = "Invalid Email format";
+    }
     if (!formData.password) newErrors.password = "Weak password";
     if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = "Passwords don't match";
@@ -52,11 +64,9 @@ const SignupPage = () => {
           "http://localhost:5000/api/auth/register",
           formData
         );
-        console.log("User registered:", response.data);
         alert("Registration successful!");
         navigate("/login");
       } catch (error) {
-        console.error("Error during registration:", error.response.data);
         alert("Registration failed. Please try again.");
       } finally {
         setIsLoading(false);
@@ -91,11 +101,10 @@ const SignupPage = () => {
             name="username"
             value={formData.username}
             onChange={handleChange}
+            onFocus={handleFocus}
             className={errors.username ? "signup-error-input" : ""}
+            placeholder={errors.username || ""}
           />
-          {errors.username && (
-            <span className="signup-error-text">{errors.username}</span>
-          )}
         </div>
 
         <div className="signup-form-group">
@@ -105,11 +114,10 @@ const SignupPage = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
+            onFocus={handleFocus}
             className={errors.email ? "signup-error-input" : ""}
+            placeholder={errors.email || ""}
           />
-          {errors.email && (
-            <span className="signup-error-text">{errors.email}</span>
-          )}
         </div>
         <div className="signup-form-group">
           <label>Password</label>
@@ -118,11 +126,10 @@ const SignupPage = () => {
             name="password"
             value={formData.password}
             onChange={handleChange}
+            onFocus={handleFocus}
             className={errors.password ? "signup-error-input" : ""}
+            placeholder={errors.password || ""}
           />
-          {errors.password && (
-            <span className="signup-error-text">{errors.password}</span>
-          )}
         </div>
         <div className="signup-form-group">
           <label>Confirm Password</label>
@@ -131,11 +138,10 @@ const SignupPage = () => {
             name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleChange}
+            onFocus={handleFocus}
             className={errors.confirmPassword ? "signup-error-input" : ""}
+            placeholder={errors.confirmPassword || ""}
           />
-          {errors.confirmPassword && (
-            <span className="signup-error-text">{errors.confirmPassword}</span>
-          )}
         </div>
         <button
           type="submit"
