@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import axios from "axios";
-import CreateQuizModal from "../components/CreateQuizModal"; // Import the CreateQuizModal component
+import CreateQuizModal from "../components/CreateQuizModal";
+import "../css/dashboard.css"; // Link to the new scoped CSS file
 
 const DashboardPage = () => {
   const [quizData, setQuizData] = useState({
@@ -10,17 +11,16 @@ const DashboardPage = () => {
     totalImpressions: 0,
     trendingQuizzes: [],
   });
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/quizzes/dashboard-data", {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`, 
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((response) => {
-        console.log(response.data);
         const {
           totalQuizzes,
           totalQuestions,
@@ -31,7 +31,7 @@ const DashboardPage = () => {
           totalQuizzes,
           totalQuestions,
           totalImpressions,
-          trendingQuizzes: trendingQuizzes || [], 
+          trendingQuizzes: trendingQuizzes || [],
         });
       })
       .catch((error) => {
@@ -40,11 +40,11 @@ const DashboardPage = () => {
   }, []);
 
   const handleOpenModal = () => {
-    setIsModalOpen(true); // Open the modal
+    setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false); // Close the modal
+    setIsModalOpen(false);
   };
 
   const handleContinue = (quizName, quizType) => {
@@ -55,24 +55,24 @@ const DashboardPage = () => {
   };
 
   return (
-    <div className="dashboard">
-      <Navbar onCreateQuiz={handleOpenModal} /> {/* Pass the function as a prop */}
-      <div className="dashboard-content">
-        <div className="stats">
-          <div className="stat-box">
+    <div className="dashboard-page">
+      <Navbar onCreateQuiz={handleOpenModal} />
+      <div className="dashboard-page-content">
+        <div className="dashboard-stats">
+          <div className="dashboard-stat-box">
             <h3>{quizData.totalQuizzes}</h3>
             <p>Quizzes Created</p>
           </div>
-          <div className="stat-box">
+          <div className="dashboard-stat-box">
             <h3>{quizData.totalQuestions}</h3>
             <p>Questions Created</p>
           </div>
-          <div className="stat-box">
+          <div className="dashboard-stat-box">
             <h3>{quizData.totalImpressions}</h3>
             <p>Total Impressions</p>
           </div>
         </div>
-        <div className="trending-quizzes">
+        <div className="dashboard-trending-quizzes">
           <h2>Trending Quizzes</h2>
           <ul>
             {quizData.trendingQuizzes.length > 0 ? (
@@ -92,7 +92,10 @@ const DashboardPage = () => {
         </div>
       </div>
       {isModalOpen && (
-        <CreateQuizModal onClose={handleCloseModal} onContinue={handleContinue} />
+        <CreateQuizModal
+          onClose={handleCloseModal}
+          onContinue={handleContinue}
+        />
       )}
     </div>
   );

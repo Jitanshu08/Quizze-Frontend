@@ -58,17 +58,6 @@ nav ul li a.active {
 }
 
 
-/* DashboardPage.css */
-.dashboard {
-  display: flex;
-}
-
-.dashboard-content {
-  margin-left: 30%;
-  padding: 20px;
-  width: 80%;
-}
-
 .stats {
   display: flex;
   justify-content: space-between;

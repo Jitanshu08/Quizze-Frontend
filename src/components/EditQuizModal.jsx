@@ -62,15 +62,15 @@ const EditQuizModal = ({ quiz, onClose, onSave }) => {
   }
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="edit-quiz-modal-overlay">
+      <div className="edit-quiz-modal-content">
         <h2>Edit Quiz</h2>
-        <div className="question-navigation">
+        <div className="edit-quiz-question-navigation">
           {questions.map((_, index) => (
             <button
               key={index}
               onClick={() => setActiveQuestionIndex(index)}
-              className={`question-button ${
+              className={`edit-quiz-question-button ${
                 activeQuestionIndex === index ? "active" : ""
               }`}
             >
@@ -78,18 +78,19 @@ const EditQuizModal = ({ quiz, onClose, onSave }) => {
             </button>
           ))}
         </div>
-        <div className="question-group">
+        <div className="edit-quiz-question-group">
           <input
             type="text"
             value={questions[activeQuestionIndex]?.text || ""}
             onChange={(e) => handleQuestionChange(activeQuestionIndex, e)}
+            className="edit-quiz-modal-input"
           />
           {questions[activeQuestionIndex]?.options.map((option, oIndex) => (
             <div
               key={oIndex}
-              className={`option-group ${
+              className={`edit-quiz-option-group ${
                 questions[activeQuestionIndex].correctOption === oIndex
-                  ? "correct-option"
+                  ? "edit-quiz-correct-option"
                   : ""
               }`}
             >
@@ -102,11 +103,12 @@ const EditQuizModal = ({ quiz, onClose, onSave }) => {
               />
             </div>
           ))}
-          <div className="form-group">
-            <label>Timer:</label>
+          <div className="edit-quiz-form-group">
+            <label className="edit-quiz-modal-label">Timer:</label>
             <select
               value={questions[activeQuestionIndex]?.timer || "off"}
               onChange={(e) => handleTimerChange(activeQuestionIndex, e)}
+              className="edit-quiz-modal-select"
             >
               <option value="off">Off</option>
               <option value="5">5 seconds</option>
@@ -114,9 +116,9 @@ const EditQuizModal = ({ quiz, onClose, onSave }) => {
             </select>
           </div>
         </div>
-        <div className="modal-actions">
-          <button onClick={onClose}>Cancel</button>
-          <button onClick={handleSave}>Save Changes</button>
+        <div className="edit-quiz-modal-actions">
+          <button className="edit-quiz-modal-button" onClick={onClose}>Cancel</button>
+          <button className="edit-quiz-modal-button" onClick={handleSave}>Save Changes</button>
         </div>
       </div>
     </div>

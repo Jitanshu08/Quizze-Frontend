@@ -1,4 +1,5 @@
-.modal-overlay {
+/* CreateQuizModal.css */
+.create-quiz-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -10,7 +11,7 @@
   align-items: center;
 }
 
-.modal-content {
+.create-quiz-modal-content {
   background: white;
   padding: 20px;
   border-radius: 8px;
@@ -19,51 +20,51 @@
   text-align: center;
 }
 
-.form-group {
+.create-quiz-form-group {
   margin-bottom: 20px;
 }
 
-label {
+.create-quiz-label {
   display: block;
   margin-bottom: 8px;
   font-weight: bold;
 }
 
-input[type="text"] {
+.create-quiz-input-text {
   width: 100%;
   padding: 8px;
   border-radius: 4px;
   border: 1px solid #ccc;
 }
 
-input[type="radio"] {
+.create-quiz-input-radio {
   margin-right: 8px;
 }
 
-.modal-actions {
+.create-quiz-modal-actions {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
 }
 
-button {
+.create-quiz-button {
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
-button:hover {
+.create-quiz-button:hover {
   background-color: #ddd;
 }
 
-.option-group {
+.create-quiz-option-group {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
 }
 
-.option-group input[type="text"] {
+.create-quiz-option-group .create-quiz-input-text {
   flex: 1;
   padding: 8px;
   margin-right: 10px;
@@ -72,11 +73,11 @@ button:hover {
   width: 120px;
 }
 
-.option-group input[type="radio"] {
+.create-quiz-option-group .create-quiz-input-radio {
   margin-right: 10px;
 }
 
-.option-group button {
+.create-quiz-option-group .create-quiz-remove-button {
   background-color: red;
   color: white;
   border: none;
@@ -85,18 +86,18 @@ button:hover {
   cursor: pointer;
 }
 
-.option-group button:hover {
+.create-quiz-option-group .create-quiz-remove-button:hover {
   background-color: darkred;
 }
 
-.question-navigation {
+.create-quiz-question-navigation {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
 
-.question-button,
-.add-question-button {
+.create-quiz-question-button,
+.create-quiz-add-question-button {
   background-color: #f4f4f4;
   border: 1px solid #ccc;
   padding: 8px 16px;
@@ -111,13 +112,13 @@ button:hover {
   transition: background-color 0.3s;
 }
 
-.question-button.active,
-.add-question-button:hover {
+.create-quiz-question-button.active,
+.create-quiz-add-question-button:hover {
   background-color: #007bff;
   color: white;
 }
 
-.add-question-button {
+.create-quiz-add-question-button {
   font-size: 1.5em;
   line-height: 1;
 }

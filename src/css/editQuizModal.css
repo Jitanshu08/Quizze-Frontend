@@ -1,4 +1,5 @@
-.modal-overlay {
+/* EditQuizModal.css */
+.edit-quiz-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -11,22 +12,22 @@
   z-index: 1000; /* Ensure it's on top of other content */
 }
 
-.modal-content {
+.edit-quiz-modal-content {
   background: white;
   padding: 20px;
   border-radius: 8px;
-  width: 500px; 
+  width: 500px;
   max-width: 90%;
   text-align: center;
 }
 
-.question-navigation {
+.edit-quiz-question-navigation {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
 
-.question-button {
+.edit-quiz-question-button {
   background-color: #f4f4f4;
   border: 1px solid #ccc;
   padding: 8px 16px;
@@ -41,64 +42,64 @@
   transition: background-color 0.3s;
 }
 
-.question-button.active {
+.edit-quiz-question-button.active {
   background-color: #007bff;
   color: white;
 }
 
-.question-group {
+.edit-quiz-question-group {
   margin-top: 20px;
 }
 
-.option-group {
+.edit-quiz-option-group {
   margin-bottom: 10px;
   display: flex;
   align-items: center;
 }
 
-.option-group input {
+.edit-quiz-option-group input {
   width: 100%;
   padding: 8px;
   border-radius: 4px;
   border: 1px solid #ccc;
 }
 
-.correct-option input {
+.edit-quiz-correct-option input {
   background-color: #d4edda;
   border-color: #28a745;
 }
 
-.form-group {
+.edit-quiz-form-group {
   margin-bottom: 20px;
 }
 
-label {
+.edit-quiz-modal-label {
   display: block;
   margin-bottom: 8px;
   font-weight: bold;
 }
 
-input[type="text"],
-select {
+.edit-quiz-modal-input,
+.edit-quiz-modal-select {
   width: 100%;
   padding: 8px;
   border-radius: 4px;
   border: 1px solid #ccc;
 }
 
-.modal-actions {
+.edit-quiz-modal-actions {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
 }
 
-button {
+.edit-quiz-modal-button {
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
-button:hover {
+.edit-quiz-modal-button:hover {
   background-color: #ddd;
 }

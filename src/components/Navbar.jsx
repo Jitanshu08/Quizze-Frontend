@@ -3,38 +3,38 @@ import { Link, useNavigate } from "react-router-dom";
 import "../css/Navbar.css";
 
 const Navbar = ({ onCreateQuiz }) => {
-  // Accept onCreateQuiz as a prop
   const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    console.log("Token after logout:", localStorage.getItem("token")); // Should be null
+    console.log("Token after logout:", localStorage.getItem("token"));
     navigate("/login", { replace: true });
   };
 
   return (
-    <div className="navbar">
-      <div className="logo">
+    <div className="dashboard-navbar">
+      <div className="dashboard-logo">
         <h1>QUIZZIE</h1>
       </div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
+      <nav className="dashboard-nav">
+        <ul className="dashboard-nav-list">
+          <li className="dashboard-nav-item">
+            <Link to="/dashboard" className="dashboard-nav-link">Dashboard</Link>
           </li>
-          <li>
-            <Link to="/analytics">Analytics</Link>
+          <li className="dashboard-nav-item">
+            <Link to="/analytics" className="dashboard-nav-link">Analytics</Link>
           </li>
-          <li>
-            {/* Call the onCreateQuiz function when the link is clicked */}
-            <a href="#" onClick={onCreateQuiz}>
+          <li className="dashboard-nav-item">
+            <a href="#" onClick={onCreateQuiz} className="dashboard-nav-link">
               Create Quiz
             </a>
           </li>
         </ul>
       </nav>
-      <div className="logout">
-        <button onClick={handleLogout}>LOGOUT</button>
+      <div className="dashboard-logout">
+        <button onClick={handleLogout} className="dashboard-logout-button">
+          LOGOUT
+        </button>
       </div>
     </div>
   );

@@ -41,9 +41,12 @@ const SignupPage = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
+      setIsLoading(true);
       try {
         const response = await axios.post(
           "http://localhost:5000/api/auth/register",
@@ -55,79 +58,91 @@ const SignupPage = () => {
       } catch (error) {
         console.error("Error during registration:", error.response.data);
         alert("Registration failed. Please try again.");
+      } finally {
+        setIsLoading(false);
       }
     }
   };
 
   return (
-    <div className="form-container">
+    <div className="signup-form-container">
       <h1>QUIZZIE</h1>
-      <div className="form-switch">
+      <div className="signup-form-switch">
         <Link to="/signup">
-          <button className={location.pathname === "/signup" ? "active" : ""}>
+          <button
+            className={location.pathname === "/signup" ? "signup-active" : ""}
+          >
             Sign Up
           </button>
         </Link>
         <Link to="/login">
-          <button className={location.pathname === "/login" ? "active" : ""}>
+          <button
+            className={location.pathname === "/login" ? "signup-active" : ""}
+          >
             Log In
           </button>
         </Link>
       </div>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className="signup-form-group">
           <label>Name</label>
           <input
             type="text"
             name="username"
             value={formData.username}
             onChange={handleChange}
-            className={errors.username ? "error-input" : ""}
+            className={errors.username ? "signup-error-input" : ""}
           />
           {errors.username && (
-            <span className="error-text">{errors.username}</span>
+            <span className="signup-error-text">{errors.username}</span>
           )}
         </div>
 
-        <div className="form-group">
+        <div className="signup-form-group">
           <label>Email</label>
           <input
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className={errors.email ? "error-input" : ""}
+            className={errors.email ? "signup-error-input" : ""}
           />
-          {errors.email && <span className="error-text">{errors.email}</span>}
+          {errors.email && (
+            <span className="signup-error-text">{errors.email}</span>
+          )}
         </div>
-        <div className="form-group">
+        <div className="signup-form-group">
           <label>Password</label>
           <input
             type="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
-            className={errors.password ? "error-input" : ""}
+            className={errors.password ? "signup-error-input" : ""}
           />
           {errors.password && (
-            <span className="error-text">{errors.password}</span>
+            <span className="signup-error-text">{errors.password}</span>
           )}
         </div>
-        <div className="form-group">
+        <div className="signup-form-group">
           <label>Confirm Password</label>
           <input
             type="password"
             name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleChange}
-            className={errors.confirmPassword ? "error-input" : ""}
+            className={errors.confirmPassword ? "signup-error-input" : ""}
           />
           {errors.confirmPassword && (
-            <span className="error-text">{errors.confirmPassword}</span>
+            <span className="signup-error-text">{errors.confirmPassword}</span>
           )}
         </div>
-        <button type="submit" className="submit-btn">
-          Sign Up
+        <button
+          type="submit"
+          className="signup-submit-btn"
+          disabled={isLoading}
+        >
+          {isLoading ? "Signing Up..." : "Sign-Up"}
         </button>
       </form>
     </div>

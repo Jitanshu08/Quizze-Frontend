@@ -1,81 +1,117 @@
-.form-container {
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  
-  h1 {
-    font-family: 'Arial', sans-serif;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .form-switch {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .form-switch button {
-    border: none;
-    background-color: transparent;
-    font-weight: bold;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    color: #666;
-  }
-  
-  .form-switch button.active {
-    color: #000;
-    background-color: #e0e0e0;
-    border-radius: 5px;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-    text-align: left;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  .form-group input {
-    width: calc(100% - 10px);
-    padding: 10px;
-    border: 2px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  .error-input {
-    border-color: #e74c3c;
-  }
-  
-  .error-text {
-    color: #e74c3c;
-    font-size: 12px;
-    margin-top: 5px;
-  }
-  
-  .submit-btn {
-    width: 100%;
-    padding: 10px;
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
-  }
-  
-  .submit-btn:hover {
-    background-color: #2980b9;
-  }
-  
+/* Main page background */
+.login-page-background {
+  background-color: rgba(242, 242, 242, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Login form container */
+.login-form-container {
+  width: 1066px;
+  height: 611px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 15px;
+  box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+/* Title */
+.login-form-container h1 {
+  font-family: "Jomhuria", sans-serif;
+  font-size: 100px;
+  font-weight: 400;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+/* Form switch buttons */
+.login-form-switch {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 50px;
+}
+
+.login-form-switch button {
+  border: none;
+  background-color: transparent;
+  font-weight: bold;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.login-form-switch button.login-active {
+  color: rgba(71, 68, 68, 1);
+
+  background-color: rgba(224, 224, 224, 1);
+  border-radius: 5px;
+  box-shadow: 0 4px 20px rgba(80, 80, 255, 0.5);
+}
+
+/* Form group styling */
+.login-form-group {
+  display: flex;
+  align-items: center; /* Align label and input horizontally */
+
+  margin-bottom: 20px;
+  margin-left: 230px;
+}
+
+.login-form-group label {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  width: 200px; /* Fixed width for the labels */
+  text-align: right;
+  padding-right: 30px;
+  color: rgba(71, 68, 68, 1);
+}
+
+.login-form-group input {
+  width: 100%;
+  max-width: 388px;
+  height: 38px;
+  padding: 10px;
+  background-color: #f5f5f5; /* Light gray background */
+  border-radius: 10px 10px 0px 0px;
+  border-bottom: 2px solid #f5f5f5;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  box-shadow: none;
+}
+
+/* Error styling */
+.login-error-input {
+  border-bottom-color: #e74c3c;
+}
+
+.login-error-text {
+  color: #e74c3c;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* Submit button styling */
+.login-submit-btn {
+  width: 100%;
+  max-width: 388px;
+  padding: 10px;
+  background-color: rgba(169, 188, 255, 1);
+  color: rgba(71, 68, 68, 1);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.login-submit-btn:hover {
+  background-color: #574bdb;
+}
