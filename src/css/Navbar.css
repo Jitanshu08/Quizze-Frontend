@@ -1,102 +1,82 @@
-.navbar {
-  width: 20%;
-  background-color: #f8f9fa;
+.dashboard-navbar {
+  width: 15%;
+  background-color: #ffffff;
   height: 100vh;
-  padding: 20px;
+  padding: 0 0px;
   position: fixed;
-}
-
-.logo h1 {
-  font-size: 24px;
-  margin-bottom: 40px;
-}
-
-nav ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-nav ul li {
-  margin-bottom: 20px;
-}
-
-nav ul li a {
-  text-decoration: none;
-  font-size: 18px;
-  color: #333;
-  display: block;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-nav ul li a:hover,
-nav ul li a.active {
-  background-color: #dee2e6;
-}
-
-.logout {
-  margin-top: 40px;
-}
-
-.logout a {
-  color: red;
-  text-decoration: none;
-  font-weight: bold;
-  display: block;
-  text-align: center;
-}
-.logout button {
-  background-color: transparent;
-  color: red;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.logout button:hover {
-  text-decoration: underline;
-}
-
-
-.stats {
+  top: 0;
+  left: 0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1000;
 }
 
-.stat-box {
-  background-color: #e9ecef;
-  padding: 20px;
-  border-radius: 8px;
-  width: 30%;
+.dashboard-logo h1 {
+  font-family: "Jomhuria", sans-serif;
+  font-size: 70px;
+  font-weight: 400;
+  margin-bottom: 130px;
   text-align: center;
 }
 
-.stat-box h3 {
-  font-size: 32px;
-  margin: 0;
+.dashboard-nav {
+  flex-grow: 1;
+  width: 100%;
 }
 
-.stat-box p {
-  margin: 10px 0 0;
-  color: #6c757d;
-}
-
-.trending-quizzes {
-  margin-top: 40px;
-}
-
-.trending-quizzes h2 {
-  margin-bottom: 20px;
-}
-
-.trending-quizzes ul {
+.dashboard-nav-list {
   list-style-type: none;
   padding: 0;
+  margin: 0;
+  width: 100%;
+  text-align: center;
 }
 
-.trending-quizzes ul li {
-  background-color: #f8f9fa;
-  padding: 20px;
-  margin-bottom: 10px;
+.dashboard-nav-item {
+  margin-bottom: 30px;
+}
+
+.dashboard-nav-link {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #333333;
+  display: block;
+  width: 90%;
+  padding: 10px 0;
   border-radius: 8px;
+  text-align: center;
+  transition: all 0.3s ease;
+  margin: 0 auto;
+}
+
+.dashboard-nav-link:hover,
+.dashboard-nav-link.active {
+  background-color: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+}
+
+.dashboard-logout{
+  width: 80%;
+  border-top: black solid 2px;
+}
+.dashboard-logout-button {
+  background-color: transparent;
+  color: rgba(71, 68, 68, 1);
+  border: none; 
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+  font-family: "Jomhuria", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  margin-top: 10px 0 0 0 ;
+}
+
+.dashboard-logout-button:hover {
+  text-decoration: underline;
+  background-color:#ffffff;
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 import CreateQuizModal from "../components/CreateQuizModal";
-import "../css/dashboard.css"; // Link to the new scoped CSS file
+import "../css/dashboard.css"; 
 
 const DashboardPage = () => {
   const [quizData, setQuizData] = useState({
@@ -51,7 +51,7 @@ const DashboardPage = () => {
     console.log("Quiz Name:", quizName);
     console.log("Quiz Type:", quizType);
     setIsModalOpen(false);
-    // Proceed with the next steps (e.g., quiz creation form based on the selected type)
+    
   };
 
   return (
@@ -82,7 +82,7 @@ const DashboardPage = () => {
                   <p>
                     Created on: {new Date(quiz.createdAt).toLocaleDateString()}
                   </p>
-                  <p>Impressions: {quiz.impressions}</p>
+                  <p>{quiz.impressions}</p>
                 </li>
               ))
             ) : (

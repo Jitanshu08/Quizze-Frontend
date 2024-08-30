@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../css/Navbar.css";
 
 const Navbar = ({ onCreateQuiz }) => {
@@ -19,10 +19,22 @@ const Navbar = ({ onCreateQuiz }) => {
       <nav className="dashboard-nav">
         <ul className="dashboard-nav-list">
           <li className="dashboard-nav-item">
-            <Link to="/dashboard" className="dashboard-nav-link">Dashboard</Link>
+            <NavLink
+              to="/dashboard"
+              className="dashboard-nav-link"
+              activeClassName="active"
+            >
+              Dashboard
+            </NavLink>
           </li>
           <li className="dashboard-nav-item">
-            <Link to="/analytics" className="dashboard-nav-link">Analytics</Link>
+            <NavLink
+              to="/analytics"
+              className="dashboard-nav-link"
+              activeClassName="active"
+            >
+              Analytics
+            </NavLink>
           </li>
           <li className="dashboard-nav-item">
             <a href="#" onClick={onCreateQuiz} className="dashboard-nav-link">
