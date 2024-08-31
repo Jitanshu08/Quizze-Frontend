@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../css/CreateQuizModal.css";
-import ShareQuizModal from "./ShareQuizModal"; 
+import ShareQuizModal from "./ShareQuizModal";
 import axios from "axios";
 
 const CreateQuizModal = ({ onClose }) => {
@@ -17,7 +17,7 @@ const CreateQuizModal = ({ onClose }) => {
       optionType: "Text",
     },
   ]);
-  const [shareLink, setShareLink] = useState(null); 
+  const [shareLink, setShareLink] = useState(null);
 
   const handleQuizNameChange = (e) => setQuizName(e.target.value);
   const handleQuizTypeChange = (e) => setQuizType(e.target.value);

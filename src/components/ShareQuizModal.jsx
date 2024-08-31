@@ -11,11 +11,15 @@ const ShareQuizModal = ({ link, onClose }) => {
     <div className="modal-overlay">
       <div className="modal-content">
         {/* Adding the close button */}
-        <button className="close-button" onClick={onClose}>×</button>
+        <button className="close-button" onClick={onClose}>
+          ×
+        </button>
         <h2>Congrats your Quiz is Published!</h2>
         <input type="text" value={link} readOnly />
         <div className="modal-actions">
-          <button className="share-button" onClick={handleCopyLink}>Share</button>
+          <button className="share-button" onClick={handleCopyLink}>
+            Share
+          </button>
         </div>
       </div>
     </div>

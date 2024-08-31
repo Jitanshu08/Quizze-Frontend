@@ -33,7 +33,7 @@ const EditQuizModal = ({ quiz, onClose, onSave }) => {
   const handleSave = async () => {
     const updatedQuiz = {
       ...quiz,
-      questions, 
+      questions,
     };
 
     try {
@@ -117,8 +117,12 @@ const EditQuizModal = ({ quiz, onClose, onSave }) => {
           </div>
         </div>
         <div className="edit-quiz-modal-actions">
-          <button className="edit-quiz-modal-button" onClick={onClose}>Cancel</button>
-          <button className="edit-quiz-modal-button" onClick={handleSave}>Save Changes</button>
+          <button className="edit-quiz-modal-button" onClick={onClose}>
+            Cancel
+          </button>
+          <button className="edit-quiz-modal-button" onClick={handleSave}>
+            Save Changes
+          </button>
         </div>
       </div>
     </div>
