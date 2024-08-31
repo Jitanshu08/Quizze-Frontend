@@ -1,7 +1,7 @@
 /* Analysis Page Styles */
 .quiz-analysis-wrapper {
   display: flex;
-  width: 80vw;
+  width: 90vw;
   height: 95vh;
 }
 
@@ -17,8 +17,9 @@
 }
 
 .quiz-analysis-content h2 {
-  font-size: 36px;
-  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+  font-size: 40px;
+  font-weight: 600;
   color: #3a77f3;
   margin-bottom: 20px;
   text-align: left;
@@ -51,20 +52,23 @@
 
 .analysis-item {
   padding: 20px;
+  padding-right: 0;
   margin-bottom: 20px;
   border-bottom: 1px solid #ddd;
 }
 
 .analysis-item h3 {
-  font-size: 20px;
+  font-family: "Poppins", sans-serif;
+  font-size: 30px;
   margin-bottom: 20px;
-  font-weight: bold;
+  font-weight: 500;
   color: #000000;
 }
 
 .analysis-stats {
   display: flex;
   justify-content: space-between;
+  gap: 25px;
 }
 
 .stat-box {
@@ -74,21 +78,44 @@
   border-radius: 10px;
   text-align: center;
   border: 1px solid #ddd;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .stat-box p:first-child {
-  font-size: 28px;
-  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+  font-size: 30px;
+  font-weight: 600;
   margin-bottom: 10px;
-  color: #3a77f3;
+  color: rgba(71, 68, 68, 1);
 }
 
 .stat-box p:last-child {
   font-size: 14px;
-  color: #777;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: rgba(71, 68, 68, 1);
 }
 
 .poll-type .stat-box {
   width: 24%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Space between the number and the option text */
+}
+
+.poll-type .stat-box p {
+  margin: 0;
+}
+
+.poll-type .stat-box p:first-child {
+  font-size: 30px;
+  font-weight: 600;
+  color: rgba(71, 68, 68, 1);
+}
+
+.poll-type .stat-box p:last-child {
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(71, 68, 68, 1);
 }
