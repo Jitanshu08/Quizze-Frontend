@@ -50,6 +50,14 @@ const QuizAnalysisPage = () => {
     fetchAnalysisData();
   }, [quizId]);
 
+  const formatDate = (date) => {
+    const options = { day: "2-digit", month: "short", year: "numeric" };
+    const dateParts = new Date(date)
+      .toLocaleDateString("en-GB", options)
+      .split(" ");
+    return `${dateParts[0]} ${dateParts[1]}, ${dateParts[2]}`;
+  };
+
   return (
     <div className="quiz-analysis-wrapper">
       <Navbar />
@@ -59,10 +67,7 @@ const QuizAnalysisPage = () => {
             <>
               <h2>{quizData.title} Question Analysis</h2>
               <div className="quiz-metadata">
-                <p>
-                  Created on:{" "}
-                  {new Date(quizData.createdAt).toLocaleDateString()}
-                </p>
+                <p>Created on: {formatDate(quizData.createdAt)}</p>
                 <p>Impressions: {quizData.impressions}</p>
               </div>
             </>
