@@ -1,7 +1,7 @@
 .dashboard-page {
   display: flex;
   margin-right: 2%;
-  height: 100vh; 
+  height: 100vh;
   overflow-y: auto;
 }
 
@@ -27,12 +27,12 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centering horizontally */
-  justify-content: center; /* Centering vertically */
+  align-items: center;
+  justify-content: center;
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   margin-right: 20px;
-  text-align: center; /* Center text alignment */
+  text-align: center;
 }
 
 .dashboard-stat-box h3 {
