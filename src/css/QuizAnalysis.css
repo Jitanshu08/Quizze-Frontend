@@ -27,7 +27,7 @@
 
 .quiz-metadata {
   display: flex;
-  flex-direction: column; /* Stack the metadata vertically */
+  flex-direction: column; 
   text-align: left;
   align-items: flex-start;
   margin-bottom: 20px;
@@ -101,7 +101,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 10px; /* Space between the number and the option text */
+  gap: 10px; 
 }
 
 .poll-type .stat-box p {
