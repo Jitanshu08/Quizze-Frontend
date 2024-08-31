@@ -5,10 +5,26 @@ import Navbar from "../components/Navbar";
 import CreateQuizModal from "../components/CreateQuizModal";
 import EditQuizModal from "../components/EditQuizModal";
 import DeleteQuizModal from "../components/DeleteQuizModal";
+import Notification from "../components/Notification";
 import "../css/analytics.css";
 import editIcon from "../assets/edit.png";
 import deleteIcon from "../assets/delete.png";
 import shareIcon from "../assets/share.png";
+
+const formatDate = (date) => {
+  const options = { day: "2-digit", month: "short", year: "numeric" };
+  const dateParts = new Date(date)
+    .toLocaleDateString("en-GB", options)
+    .split(" ");
+  return `${dateParts[0]} ${dateParts[1]}, ${dateParts[2]}`;
+};
+
+const formatImpressions = (impressions) => {
+  if (impressions >= 1000) {
+    return (impressions / 1000).toFixed(1) + "K";
+  }
+  return impressions;
+};
 
 function AnalyticsPage() {
   const [quizzes, setQuizzes] = useState([]);
@@ -16,6 +32,7 @@ function AnalyticsPage() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedQuiz, setSelectedQuiz] = useState(null);
+  const [notification, setNotification] = useState(null);
 
   useEffect(() => {
     const fetchQuizzes = async () => {
@@ -98,22 +115,11 @@ function AnalyticsPage() {
   const handleShare = (quiz) => {
     const shareableLink = `${window.location.origin}/quiz/${quiz._id}`;
     navigator.clipboard.writeText(shareableLink);
-    alert("Shareable link copied to clipboard!");
+    setNotification("Link copied to Clipboard!");
   };
 
-  const formatDate = (date) => {
-    const options = { day: "2-digit", month: "short", year: "numeric" };
-    const dateParts = new Date(date)
-      .toLocaleDateString("en-GB", options)
-      .split(" ");
-    return `${dateParts[0]} ${dateParts[1]}, ${dateParts[2]}`;
-  };
-
-  const formatImpressions = (impressions) => {
-    if (impressions >= 1000) {
-      return (impressions / 1000).toFixed(1) + "K";
-    }
-    return impressions;
+  const closeNotification = () => {
+    setNotification(null);
   };
 
   return (
@@ -182,6 +188,9 @@ function AnalyticsPage() {
           onClose={() => setIsDeleteModalOpen(false)}
           onConfirm={confirmDelete}
         />
+      )}
+      {notification && (
+        <Notification message={notification} onClose={closeNotification} />
       )}
     </div>
   );

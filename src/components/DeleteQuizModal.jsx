@@ -3,13 +3,16 @@ import "../css/DeleteQuizModal.css";
 
 const DeleteQuizModal = ({ quizTitle, onClose, onConfirm }) => {
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <h2>Delete Quiz</h2>
-        <p>Are you sure you want to delete the quiz "{quizTitle}"?</p>
-        <div className="modal-actions">
-          <button onClick={onClose}>Cancel</button>
-          <button onClick={onConfirm}>Confirm</button>
+    <div className="delete-modal-overlay">
+      <div className="delete-modal-content">
+        <p>Are you confirm you want to delete "{quizTitle}"?</p>
+        <div className="delete-modal-actions">
+          <button className="delete-confirm-button" onClick={onConfirm}>
+            Confirm Delete
+          </button>
+          <button className="delete-cancel-button" onClick={onClose}>
+            Cancel
+          </button>
         </div>
       </div>
     </div>
