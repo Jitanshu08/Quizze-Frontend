@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 import CreateQuizModal from "../components/CreateQuizModal";
-import "../css/dashboard.css"; 
+import "../css/dashboard.css";
 
 const DashboardPage = () => {
   const [quizData, setQuizData] = useState({
@@ -39,6 +39,13 @@ const DashboardPage = () => {
       });
   }, []);
 
+  const formatImpressions = (impressions) => {
+    if (impressions >= 1000) {
+      return (impressions / 1000).toFixed(1) + "K";
+    }
+    return impressions;
+  };
+
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
@@ -51,7 +58,6 @@ const DashboardPage = () => {
     console.log("Quiz Name:", quizName);
     console.log("Quiz Type:", quizType);
     setIsModalOpen(false);
-    
   };
 
   return (
@@ -59,17 +65,25 @@ const DashboardPage = () => {
       <Navbar onCreateQuiz={handleOpenModal} />
       <div className="dashboard-page-content">
         <div className="dashboard-stats">
-          <div className="dashboard-stat-box">
-            <h3>{quizData.totalQuizzes}</h3>
-            <p>Quizzes Created</p>
+          <div className="dashboard-stat-box quizzes">
+            <h3>
+              {quizData.totalQuizzes} <span className="first-word">Quiz</span>
+            </h3>
+            <p>Created</p>
           </div>
-          <div className="dashboard-stat-box">
-            <h3>{quizData.totalQuestions}</h3>
-            <p>Questions Created</p>
+          <div className="dashboard-stat-box questions">
+            <h3>
+              {quizData.totalQuestions}{" "}
+              <span className="first-word">questions</span>
+            </h3>
+            <p>Created</p>
           </div>
-          <div className="dashboard-stat-box">
-            <h3>{quizData.totalImpressions}</h3>
-            <p>Total Impressions</p>
+          <div className="dashboard-stat-box impressions">
+            <h3>
+              {formatImpressions(quizData.totalImpressions)}{" "}
+              <span className="first-word">Total</span>
+            </h3>
+            <p>Impressions</p>
           </div>
         </div>
         <div className="dashboard-trending-quizzes">
@@ -78,11 +92,20 @@ const DashboardPage = () => {
             {quizData.trendingQuizzes.length > 0 ? (
               quizData.trendingQuizzes.map((quiz, index) => (
                 <li key={index}>
-                  <h3>{quiz.title}</h3>
-                  <p>
-                    Created on: {new Date(quiz.createdAt).toLocaleDateString()}
+                  <div className="quiz-header">
+                    <h3>{quiz.title}</h3>
+                    <p className="impressions">
+                      {formatImpressions(quiz.impressions)}
+                    </p>
+                  </div>
+                  <p className="created-on">
+                    Created on:{" "}
+                    {new Date(quiz.createdAt).toLocaleDateString("en-US", {
+                      day: "2-digit",
+                      month: "long",
+                      year: "numeric",
+                    })}
                   </p>
-                  <p>{quiz.impressions}</p>
                 </li>
               ))
             ) : (

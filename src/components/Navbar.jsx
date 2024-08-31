@@ -19,19 +19,21 @@ const Navbar = ({ onCreateQuiz }) => {
       <nav className="dashboard-nav">
         <ul className="dashboard-nav-list">
           <li className="dashboard-nav-item">
-            <NavLink
-              to="/dashboard"
-              className="dashboard-nav-link"
-              activeClassName="active"
+            <NavLink 
+              to="/dashboard" 
+              className={({ isActive }) => 
+                isActive ? "dashboard-nav-link active" : "dashboard-nav-link"
+              }
             >
               Dashboard
             </NavLink>
           </li>
           <li className="dashboard-nav-item">
-            <NavLink
-              to="/analytics"
-              className="dashboard-nav-link"
-              activeClassName="active"
+            <NavLink 
+              to="/analytics" 
+              className={({ isActive }) => 
+                isActive ? "dashboard-nav-link active" : "dashboard-nav-link"
+              }
             >
               Analytics
             </NavLink>

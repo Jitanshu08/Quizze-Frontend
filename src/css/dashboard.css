@@ -1,40 +1,69 @@
-/* DashboardPage.css */
 .dashboard-page {
   display: flex;
+  margin-right: 2%;
+  height: 100vh; 
+  overflow-y: auto;
 }
 
 .dashboard-page-content {
-  margin-left: 10%; 
-  padding: 40px; 
-  width: 100%; 
-  background-color: #f4f4f4; 
+  margin-left: 18%;
+  padding: 30px 40px;
+  width: 100%;
+  background-color: #f4f4f4;
+  overflow-y: auto;
 }
 
 .dashboard-stats {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 40px; 
+  margin-bottom: 40px;
 }
 
 .dashboard-stat-box {
+  width: 295px;
+  height: 145px;
   background-color: #ffffff;
-  padding: 30px; 
   border-radius: 10px;
-  width: 30%;
-  text-align: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centering horizontally */
+  justify-content: center; /* Centering vertically */
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  margin-right: 20px;
+  text-align: center; /* Center text alignment */
 }
 
 .dashboard-stat-box h3 {
-  font-size: 36px; 
+  font-size: 60px;
   margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-stat-box .first-word {
+  margin-left: 10px;
+  font-size: 30px;
 }
 
 .dashboard-stat-box p {
-  margin: 10px 0 0;
-  font-size: 18px; 
-  font-weight: 600;
-  color: #6c757d;
+  font-size: 30px;
+  margin: 0;
+  margin-top: 5px;
+}
+
+.dashboard-stat-box.quizzes {
+  color: rgba(255, 93, 1, 1);
+}
+
+.dashboard-stat-box.questions {
+  color: rgba(96, 184, 75, 1);
+}
+
+.dashboard-stat-box.impressions {
+  color: rgba(80, 118, 255, 1);
 }
 
 .dashboard-trending-quizzes {
@@ -43,7 +72,7 @@
 
 .dashboard-trending-quizzes h2 {
   font-family: "Poppins", sans-serif;
-  font-size: 35px; 
+  font-size: 35px;
   font-weight: 600;
   margin-bottom: 20px;
 }
@@ -53,44 +82,52 @@
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 20px; 
+  gap: 38px;
+  margin-right: 20px;
 }
 
 .dashboard-trending-quizzes ul li {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 8px;
-  width: calc(25% - 20px); 
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
-  text-align: center;
+  width: 181px;
+  text-align: left;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+
+.dashboard-trending-quizzes ul li .quiz-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
 }
 
 .dashboard-trending-quizzes ul li h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
+  font-size: 23px;
+  margin: 0;
+  margin-right: 10px;
 }
 
-.dashboard-trending-quizzes ul li p {
-  font-size: 14px;
-  color: #6c757d;
-  margin: 5px 0;
-}
-
-.dashboard-trending-quizzes ul li p:last-child {
-  color: #f77f00; 
+.dashboard-trending-quizzes ul li .impressions {
+  color: #f77f00;
+  font-size: 15px;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
-.dashboard-trending-quizzes ul li p:last-child::after { 
+.dashboard-trending-quizzes ul li .created-on {
+  color: rgba(96, 184, 75, 1);
+  font-size: 11px;
+  margin-top: 5px;
+}
+
+.dashboard-trending-quizzes ul li .impressions::after {
   content: "";
   display: inline-block;
   width: 18px; /* Width of the image */
   height: 18px; /* Height of the image */
-  background-image: url('../assets/icon_eyes.png'); /* Path to the image */
+  background-image: url("../assets/icon_eyes.png"); /* Path to the image */
   background-size: cover;
-  margin-left: 5px; 
+  margin-left: 5px;
 }
-
-
