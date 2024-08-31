@@ -45,6 +45,13 @@ const DashboardPage = () => {
     }
     return impressions;
   };
+  const formatDate = (date) => {
+    const options = { day: "2-digit", month: "short", year: "numeric" };
+    const dateParts = new Date(date)
+      .toLocaleDateString("en-GB", options)
+      .split(" ");
+    return `${dateParts[0]} ${dateParts[1]}, ${dateParts[2]}`;
+  };
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -99,12 +106,7 @@ const DashboardPage = () => {
                     </p>
                   </div>
                   <p className="created-on">
-                    Created on:{" "}
-                    {new Date(quiz.createdAt).toLocaleDateString("en-US", {
-                      day: "2-digit",
-                      month: "long",
-                      year: "numeric",
-                    })}
+                    Created on: {formatDate(quiz.createdAt)}
                   </p>
                 </li>
               ))

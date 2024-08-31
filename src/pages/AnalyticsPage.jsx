@@ -6,6 +6,9 @@ import CreateQuizModal from "../components/CreateQuizModal";
 import EditQuizModal from "../components/EditQuizModal";
 import DeleteQuizModal from "../components/DeleteQuizModal";
 import "../css/analytics.css";
+import editIcon from "../assets/edit.png";
+import deleteIcon from "../assets/delete.png";
+import shareIcon from "../assets/share.png";
 
 function AnalyticsPage() {
   const [quizzes, setQuizzes] = useState([]);
@@ -81,7 +84,7 @@ function AnalyticsPage() {
         {
           headers: {
             Authorization: `Bearer ${token}`,
-          }
+          },
         }
       );
       setQuizzes(quizzes.filter((quiz) => quiz._id !== selectedQuiz._id));
@@ -98,43 +101,66 @@ function AnalyticsPage() {
     alert("Shareable link copied to clipboard!");
   };
 
+  const formatDate = (date) => {
+    const options = { day: "2-digit", month: "short", year: "numeric" };
+    const dateParts = new Date(date)
+      .toLocaleDateString("en-GB", options)
+      .split(" ");
+    return `${dateParts[0]} ${dateParts[1]}, ${dateParts[2]}`;
+  };
+
+  const formatImpressions = (impressions) => {
+    if (impressions >= 1000) {
+      return (impressions / 1000).toFixed(1) + "K";
+    }
+    return impressions;
+  };
+
   return (
     <div className="analytics-container">
       <Navbar onCreateQuiz={handleOpenModal} />
       <div className="analytics-content">
         <h2>Quiz Analysis</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>S.No</th>
-              <th>Quiz Name</th>
-              <th>Created on</th>
-              <th>Impressions</th>
-              <th>Actions</th>
-              <th>Analysis</th>
-            </tr>
-          </thead>
-          <tbody>
-            {quizzes.map((quiz, index) => (
-              <tr key={quiz._id}>
-                <td>{index + 1}</td>
-                <td>{quiz.title}</td>
-                <td>{new Date(quiz.createdAt).toLocaleDateString()}</td>
-                <td>{quiz.impressions}</td>
-                <td>
-                  <button onClick={() => handleEdit(quiz)}>Edit</button>
-                  <button onClick={() => handleDelete(quiz)}>Delete</button>
-                  <button onClick={() => handleShare(quiz)}>Share</button>
-                </td>
-                <td>
-                  <Link to={`/quiz-analysis/${quiz._id}`}>
-                    Question Wise Analysis
-                  </Link>
-                </td>
+        <div className="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>S.No</th>
+                <th>Quiz Name</th>
+                <th>Created on</th>
+                <th>Impressions</th>
+                <th>Actions</th>
+                <th>Analysis</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {quizzes.map((quiz, index) => (
+                <tr key={quiz._id}>
+                  <td>{index + 1}</td>
+                  <td>{quiz.title}</td>
+                  <td>{formatDate(quiz.createdAt)}</td>
+                  <td>{formatImpressions(quiz.impressions)}</td>
+                  <td>
+                    <button onClick={() => handleEdit(quiz)}>
+                      <img src={editIcon} alt="Edit" />
+                    </button>
+                    <button onClick={() => handleDelete(quiz)}>
+                      <img src={deleteIcon} alt="Delete" />
+                    </button>
+                    <button onClick={() => handleShare(quiz)}>
+                      <img src={shareIcon} alt="Share" />
+                    </button>
+                  </td>
+                  <td>
+                    <Link to={`/quiz-analysis/${quiz._id}`}>
+                      Question Wise Analysis
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
         <p className="add-more-text">{"{more quiz can be added}"}</p>
       </div>
       {isModalOpen && (

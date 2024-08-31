@@ -17,6 +17,7 @@
   font-family: "Jomhuria", sans-serif;
   font-size: 70px;
   font-weight: 400;
+  margin-top: 10px;
   margin-bottom: 130px;
   text-align: center;
 }
@@ -59,24 +60,24 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
 }
 
-.dashboard-logout{
+.dashboard-logout {
   width: 80%;
   border-top: black solid 2px;
 }
 .dashboard-logout-button {
   background-color: transparent;
   color: rgba(71, 68, 68, 1);
-  border: none; 
+  border: none;
   cursor: pointer;
   padding: 10px;
   width: 100%;
   font-family: "Jomhuria", sans-serif;
   font-size: 40px;
   font-weight: 700;
-  margin-top: 10px 0 0 0 ;
+  margin-top: 10px 0 0 0;
 }
 
 .dashboard-logout-button:hover {
   text-decoration: underline;
-  background-color:#ffffff;
+  background-color: #ffffff;
 }

@@ -9,7 +9,7 @@
   margin-left: 18%;
   padding: 30px 40px;
   width: 100%;
-  background-color: #f4f4f4;
+  background-color: rgba(237, 237, 237, 1);
   overflow-y: auto;
 }
 
@@ -88,9 +88,9 @@
 
 .dashboard-trending-quizzes ul li {
   background-color: #ffffff;
-  padding: 20px;
+  padding: 10px;
   border-radius: 8px;
-  width: 181px;
+  width: 210px;
   text-align: left;
   font-family: "Poppins", sans-serif;
   font-weight: 600;

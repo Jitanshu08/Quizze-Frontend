@@ -1,105 +1,156 @@
-/* AnalyticsPage.css */
+/* Container for the entire Analytics page */
 .analytics-container {
-    display: flex;
-  }
-  
-  .navbar {
-    width: 20%;
-    background-color: #f8f9fa;
-    height: 100vh;
-    padding: 20px;
-    position: fixed;
-  }
-  
-  .logo h1 {
-    font-size: 24px;
-    margin-bottom: 40px;
-  }
-  
-  nav ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  nav ul li {
-    margin-bottom: 20px;
-  }
-  
-  nav ul li a {
-    text-decoration: none;
-    font-size: 18px;
-    color: #333;
-  }
-  
-  nav ul li a.active {
-    font-weight: bold;
-    color: #000;
-  }
-  
-  .logout {
-    margin-top: 40px;
-  }
-  
-  .logout a {
-    color: red;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .analytics-content {
-    margin-left: 25%;
-    padding: 20px;
-    width: 70%;
-  }
-  
-  .analytics-content h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-  
-  table th,
-  table td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: center;
-  }
-  
-  table th {
-    background-color: #f1f1f1;
-  }
-  
-  table tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  table tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  button {
-    background-color: #007bff;
-    color: white;
-    padding: 6px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 5px;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  .add-more-text {
-    color: #6c757d;
-    text-align: center;
-    font-style: italic;
-    margin-top: 20px;
-  }
-  
+  display: flex;
+}
+
+/* Content area taking into account the space for the navbar */
+.analytics-content {
+  margin-left: 15%; /* Space for the navbar */
+  padding: 20px;
+  width: 90vw; /* Adjusted width to avoid horizontal scroll */
+  margin-top: 0px;
+  padding-top: 0;
+}
+
+/* Style for the Quiz Analysis title */
+.analytics-content h2 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 50px;
+  margin-top: 0px;
+  margin-bottom: 50px;
+  color: rgba(80, 118, 255, 1);
+  text-align: center;
+}
+
+/* Table container to enable scrolling */
+.table-container {
+  width: 100%;
+  max-height: 55vh; /* Limit the height for scrolling */
+  overflow-y: auto;
+}
+
+/* Make the table full width and ensure proper layout */
+.analytics-content table {
+  width: 100%; /* Increase table width to accommodate longer text */
+  border-collapse: separate;
+  border-spacing: 0 10px; /* Add spacing between rows */
+}
+
+/* Style the table headers */
+.analytics-content table thead th {
+  background-color: rgba(80, 118, 255, 1);
+  color: white;
+  padding: 7px;
+  text-align: center; /* Center align the text */
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* Apply border-radius to the first and last th elements */
+.analytics-content table thead th:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.analytics-content table thead th:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Set a fixed width for the Analysis column */
+.analytics-content table thead th:nth-child(6) {
+  width: 160px;
+}
+
+/* Style the table body rows */
+.analytics-content table tbody tr {
+  text-align: center; /* Center align the text */
+  background-color: rgba(237, 237, 237, 1); /* Set default background color */
+}
+
+.analytics-content table tbody tr:nth-child(even) {
+  background-color: rgba(179, 196, 255, 1); /* Alternate row color */
+}
+
+/* Style the table cells */
+.analytics-content table tbody tr td {
+  color: black;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  background-color: inherit; /* Inherit the background color */
+}
+
+/* Ensure the border-radius is applied row-wise */
+.analytics-content table tbody tr td:first-child {
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.analytics-content table tbody tr td:last-child {
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* Adjust the action buttons with new styles */
+.analytics-content table tbody td button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+.analytics-content table tbody td button img {
+  width: 18px; /* Adjust the size of the icons */
+  height: 18px;
+}
+
+/* Styling for the 'Question Wise Analysis' link */
+.analytics-content table tbody td a {
+  text-decoration: none;
+  color: #000000;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.analytics-content table tbody td a:hover {
+  text-decoration: underline;
+}
+
+/* Extra styling for the "add more quiz" text */
+.add-more-text {
+  margin-top: 20px;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  color: #333;
+  text-align: right;
+}
+
+/* Custom scrollbar for Firefox */
+.table-container {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #5076ff #f4f4f4; /* Thumb and track color */
+}
+
+/* Custom scrollbar for WebKit (Chrome, Safari) */
+.table-container::-webkit-scrollbar {
+  width: 10px; /* Make the scrollbar thinner */
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background-color: #5076ff; /* Thumb color */
+  border-radius: 5px; /* Round scrollbar thumb */
+}
+
+.table-container::-webkit-scrollbar-track {
+  background-color: #f4f4f4; /* Track color */
+}
