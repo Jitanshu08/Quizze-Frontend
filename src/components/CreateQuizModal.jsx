@@ -20,7 +20,7 @@ const CreateQuizModal = ({ onClose }) => {
   const [shareLink, setShareLink] = useState(null);
 
   const handleQuizNameChange = (e) => setQuizName(e.target.value);
-  const handleQuizTypeChange = (e) => setQuizType(e.target.value);
+  const handleQuizTypeChange = (type) => setQuizType(type);
 
   const handleCancel = () => {
     onClose();
@@ -58,9 +58,9 @@ const CreateQuizModal = ({ onClose }) => {
     setQuestions(newQuestions);
   };
 
-  const handleOptionTypeChange = (index, e) => {
+  const handleOptionTypeChange = (index, value) => {
     const newQuestions = [...questions];
-    newQuestions[index].optionType = e.target.value;
+    newQuestions[index].optionType = value;
     setQuestions(newQuestions);
   };
 
@@ -88,13 +88,12 @@ const CreateQuizModal = ({ onClose }) => {
     }
   };
 
-  const handleTimerChange = (index, e) => {
+  const handleTimerChange = (index, time) => {
     const newQuestions = [...questions];
-    newQuestions[index].timer = e.target.value;
+    newQuestions[index].timer = time;
     setQuestions(newQuestions);
   };
 
-  // Handle setting the correct option
   const handleCorrectOptionChange = (qIndex, oIndex) => {
     const newQuestions = [...questions];
     newQuestions[qIndex].correctOption = oIndex;
@@ -109,7 +108,7 @@ const CreateQuizModal = ({ onClose }) => {
         text: q.text,
         type: quizType,
         options: q.options,
-        timer: q.timer === "off" ? 0 : q.timer, // Convert "off" to 0
+        timer: q.timer === "off" ? 0 : q.timer,
         correctOption: quizType === "Q&A" ? q.correctOption : undefined,
       })),
       quizStructure:
@@ -143,7 +142,7 @@ const CreateQuizModal = ({ onClose }) => {
         }
       );
 
-      setShareLink(shareResponse.data.link); // Store the share link
+      setShareLink(shareResponse.data.link);
     } catch (error) {
       console.error(
         "Error creating quiz:",
@@ -160,47 +159,56 @@ const CreateQuizModal = ({ onClose }) => {
     setActiveQuestionIndex(index);
   };
 
+  const handleRemoveQuestion = (index) => {
+    const newQuestions = questions.filter((_, i) => i !== index);
+    setQuestions(newQuestions);
+    setActiveQuestionIndex(Math.max(0, activeQuestionIndex - 1));
+  };
+
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="create-quiz-modal-overlay">
+      <div className="create-quiz-modal-content">
         {step === 1 ? (
           <>
-            <h2>Create a New Quiz</h2>
-            <div className="form-group">
-              <label>Quiz Name:</label>
-              <input
-                type="text"
-                value={quizName}
-                onChange={handleQuizNameChange}
-                placeholder="Enter quiz name"
-              />
+            <input
+              type="text"
+              value={quizName}
+              onChange={handleQuizNameChange}
+              placeholder="Quiz name"
+              className="create-quiz-name-input"
+            />
+            <div className="quiz-type-selection">
+              <span className="create-quiz-type-label">Quiz Type</span>
+              <button
+                className={`quiz-type-button ${
+                  quizType === "Q&A" ? "active" : ""
+                }`}
+                onClick={() => handleQuizTypeChange("Q&A")}
+              >
+                Q & A
+              </button>
+              <button
+                className={`quiz-type-button ${
+                  quizType === "Poll" ? "active" : ""
+                }`}
+                onClick={() => handleQuizTypeChange("Poll")}
+              >
+                Poll Type
+              </button>
             </div>
-            <div className="form-group">
-              <label>Quiz Type:</label>
-              <div>
-                <label>
-                  <input
-                    type="radio"
-                    value="Q&A"
-                    checked={quizType === "Q&A"}
-                    onChange={handleQuizTypeChange}
-                  />
-                  Q&A
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    value="Poll"
-                    checked={quizType === "Poll"}
-                    onChange={handleQuizTypeChange}
-                  />
-                  Poll Type
-                </label>
-              </div>
-            </div>
-            <div className="modal-actions">
-              <button onClick={handleCancel}>Cancel</button>
-              <button onClick={handleContinue}>Continue</button>
+            <div className="create-quiz-modal-actions">
+              <button
+                onClick={handleCancel}
+                className="create-quiz-cancel-button"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleContinue}
+                className="create-quiz-continue-button"
+              >
+                Continue
+              </button>
             </div>
           </>
         ) : (
@@ -209,31 +217,38 @@ const CreateQuizModal = ({ onClose }) => {
               <ShareQuizModal link={shareLink} onClose={onClose} />
             ) : (
               <>
-                <div className="question-navigation">
+                <div className="create-quiz-question-navigation">
                   {questions.map((_, index) => (
-                    <button
+                    <div
                       key={index}
-                      onClick={() => handleQuestionNavigation(index)}
-                      className={`question-button ${
-                        activeQuestionIndex === index ? "active" : ""
-                      }`}
+                      className="create-quiz-question-button-container"
                     >
-                      {index + 1}
-                    </button>
+                      <button
+                        onClick={() => handleQuestionNavigation(index)}
+                        className={`create-quiz-question-button ${
+                          activeQuestionIndex === index ? "active" : ""
+                        }`}
+                      >
+                        {index + 1}
+                      </button>
+                      {questions.length > 1 && (
+                        <div
+                          className="create-quiz-remove-question-button"
+                          onClick={() => handleRemoveQuestion(index)}
+                        />
+                      )}
+                    </div>
                   ))}
                   {questions.length < 5 && (
                     <button
                       onClick={handleAddQuestion}
-                      className="add-question-button"
+                      className="create-quiz-add-question-button"
                     >
                       +
                     </button>
                   )}
                 </div>
-                <h2>
-                  {quizType} Quiz - Question {activeQuestionIndex + 1}
-                </h2>
-                <div className="question-group">
+                <div className="create-quiz-question-group">
                   <input
                     type="text"
                     value={questions[activeQuestionIndex].text}
@@ -241,55 +256,106 @@ const CreateQuizModal = ({ onClose }) => {
                       handleQuestionChange(activeQuestionIndex, e)
                     }
                     placeholder="Enter question text"
+                    className="create-quiz-name-input"
+                    style={{ width: "673px" }}
                   />
-                  <div className="form-group">
+                  <div className="option-type-form-group">
                     <label>Option Type:</label>
-                    <select
-                      value={questions[activeQuestionIndex].optionType}
-                      onChange={(e) =>
-                        handleOptionTypeChange(activeQuestionIndex, e)
-                      }
-                    >
-                      <option value="Text">Text</option>
-                      <option value="Image URL">Image URL</option>
-                      <option value="Text & Image URL">Text & Image URL</option>
-                    </select>
+                    <label>
+                      <input
+                        type="radio"
+                        name={`optionType-${activeQuestionIndex}`}
+                        value="Text"
+                        checked={
+                          questions[activeQuestionIndex].optionType === "Text"
+                        }
+                        onChange={() =>
+                          handleOptionTypeChange(activeQuestionIndex, "Text")
+                        }
+                      />
+                      Text
+                    </label>
+                    <label>
+                      <input
+                        type="radio"
+                        name={`optionType-${activeQuestionIndex}`}
+                        value="Image URL"
+                        checked={
+                          questions[activeQuestionIndex].optionType ===
+                          "Image URL"
+                        }
+                        onChange={() =>
+                          handleOptionTypeChange(
+                            activeQuestionIndex,
+                            "Image URL"
+                          )
+                        }
+                      />
+                      Image URL
+                    </label>
+                    <label>
+                      <input
+                        type="radio"
+                        name={`optionType-${activeQuestionIndex}`}
+                        value="Text & Image URL"
+                        checked={
+                          questions[activeQuestionIndex].optionType ===
+                          "Text & Image URL"
+                        }
+                        onChange={() =>
+                          handleOptionTypeChange(
+                            activeQuestionIndex,
+                            "Text & Image URL"
+                          )
+                        }
+                      />
+                      Text & Image URL
+                    </label>
                   </div>
                   {questions[activeQuestionIndex].options.map(
                     (option, oIndex) => (
-                      <div key={oIndex} className="option-group">
+                      <div
+                        key={oIndex}
+                        className={`create-quiz-option-group ${
+                          questions[activeQuestionIndex].correctOption ===
+                          oIndex
+                            ? "correct"
+                            : ""
+                        }`}
+                      >
+                        <input
+                          type="radio"
+                          name={`correctOption-${activeQuestionIndex}`}
+                          checked={
+                            questions[activeQuestionIndex].correctOption ===
+                            oIndex
+                          }
+                          onChange={() =>
+                            handleCorrectOptionChange(
+                              activeQuestionIndex,
+                              oIndex
+                            )
+                          }
+                        />
                         <input
                           type="text"
                           value={option}
                           onChange={(e) =>
-                            handleOptionChange(activeQuestionIndex, oIndex, e)
+                            handleOptionChange(
+                              activeQuestionIndex,
+                              oIndex,
+                              e
+                            )
                           }
                           placeholder={`Option ${oIndex + 1}`}
                         />
-                        {quizType === "Q&A" && (
-                          <input
-                            type="radio"
-                            name={`correctOption-${activeQuestionIndex}`}
-                            checked={
-                              questions[activeQuestionIndex].correctOption ===
-                              oIndex
-                            }
-                            onChange={() =>
-                              handleCorrectOptionChange(
-                                activeQuestionIndex,
-                                oIndex
-                              )
-                            }
-                          />
-                        )}
                         {questions[activeQuestionIndex].options.length > 2 && (
                           <button
+                            className="create-quiz-remove-option-button"
                             onClick={() =>
                               handleRemoveOption(activeQuestionIndex, oIndex)
                             }
-                          >
-                            Remove
-                          </button>
+                          />
                         )}
                       </div>
                     )
@@ -297,27 +363,64 @@ const CreateQuizModal = ({ onClose }) => {
                   {questions[activeQuestionIndex].options.length < 4 && (
                     <button
                       onClick={() => handleAddOption(activeQuestionIndex)}
+                      className="create-quiz-add-option-button"
                     >
                       Add Option
                     </button>
                   )}
-                  <div className="form-group">
-                    <label>Timer:</label>
-                    <select
-                      value={questions[activeQuestionIndex].timer}
-                      onChange={(e) =>
-                        handleTimerChange(activeQuestionIndex, e)
+                  <div className="create-quiz-timer-group">
+                    <label>Timer</label>
+                    <button
+                      className={`${
+                        questions[activeQuestionIndex].timer === "off"
+                          ? "active"
+                          : ""
+                      }`}
+                      onClick={() =>
+                        handleTimerChange(activeQuestionIndex, "off")
                       }
                     >
-                      <option value="off">Off</option>
-                      <option value="5">5 seconds</option>
-                      <option value="10">10 seconds</option>
-                    </select>
+                      OFF
+                    </button>
+                    <button
+                      className={`${
+                        questions[activeQuestionIndex].timer === "5"
+                          ? "active"
+                          : ""
+                      }`}
+                      onClick={() =>
+                        handleTimerChange(activeQuestionIndex, "5")
+                      }
+                    >
+                      5 sec
+                    </button>
+                    <button
+                      className={`${
+                        questions[activeQuestionIndex].timer === "10"
+                          ? "active"
+                          : ""
+                      }`}
+                      onClick={() =>
+                        handleTimerChange(activeQuestionIndex, "10")
+                      }
+                    >
+                      10 sec
+                    </button>
                   </div>
                 </div>
-                <div className="modal-actions">
-                  <button onClick={handleCancel}>Cancel</button>
-                  <button onClick={handleCreateQuiz}>Create Quiz</button>
+                <div className="create-quiz-modal-actions">
+                  <button
+                    onClick={handleCancel}
+                    className="create-quiz-cancel-button"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleCreateQuiz}
+                    className="create-quiz-continue-button create-quiz-create-button"
+                  >
+                    Create Quiz
+                  </button>
                 </div>
               </>
             )}

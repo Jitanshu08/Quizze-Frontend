@@ -1,4 +1,3 @@
-/* CreateQuizModal.css */
 .create-quiz-modal-overlay {
   position: fixed;
   top: 0;
@@ -9,53 +8,182 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
+}
+
+.create-quiz-modal-overlay.blur-background {
+  backdrop-filter: blur(10px); /* This will blur the background */
 }
 
 .create-quiz-modal-content {
   background: white;
-  padding: 20px;
+  padding: 30px;
+  padding-top: 40px;
   border-radius: 8px;
-  width: 400px;
+  width: 854px; /* Updated modal content width */
   max-width: 90%;
   text-align: center;
+  z-index: 1010; /* Ensure the modal content is above the overlay */
 }
 
-.create-quiz-form-group {
+.create-quiz-name-input {
+  width: 87%;
+  padding: 12px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 25px;
+  border-radius: 8px;
+  border: 0px;
   margin-bottom: 20px;
+  background: rgba(255, 255, 255, 1);
+  color: rgba(159, 159, 159, 1);
+  box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.15); /* Shadow for quiz name */
 }
 
-.create-quiz-label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
+.create-quiz-type-label {
+  font-family: "Poppins", sans-serif;
+  font-size: 25px;
+  font-weight: 500;
+  color: rgba(159, 159, 159, 1);
+  margin-right: 20px; /* Space between label and buttons */
+  display: inline-block;
 }
 
-.create-quiz-input-text {
-  width: 100%;
-  padding: 8px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+.quiz-type-selection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 90px; /* Space between buttons */
 }
 
-.create-quiz-input-radio {
-  margin-right: 8px;
+.quiz-type-button {
+  flex: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  font-size: 20px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: rgba(159, 159, 159, 1);
+  background: rgba(255, 255, 255, 1);
+  text-align: center;
+  width: 171px;
+}
+
+.quiz-type-button.active {
+  background-color: rgba(96, 184, 75, 1);
+
+  color: white;
+}
+
+.quiz-type-button:not(.active) {
+  box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.15); /* Shadow for unselected type */
 }
 
 .create-quiz-modal-actions {
   display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
+  justify-content: center; /* Center align the buttons */
+  margin-top: 70px;
+  gap: 100px; /* Reduce the space between the buttons */
 }
 
-.create-quiz-button {
+.create-quiz-cancel-button,
+.create-quiz-continue-button,
+.create-quiz-create-button {
+  width: 279px; /* Set the button width */
   padding: 10px 20px;
+  border-radius: 8px;
   border: none;
-  border-radius: 4px;
+  font-size: 21px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.create-quiz-cancel-button {
+  background-color: #ffffff;
+  color: rgba(71, 68, 68, 1);
+  box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.15); /* Shadow for cancel button */
+}
+
+.create-quiz-continue-button,
+.create-quiz-create-button {
+  background: rgba(96, 184, 75, 1);
+  color: white;
+}
+
+.create-quiz-cancel-button:hover {
+  background-color: #bbb;
+}
+
+.create-quiz-question-navigation {
+  display: flex;
+  justify-content: left;
+  margin-bottom: 20px;
+  margin-left: 38px;
+  gap: 10px; /* Add gap between question buttons */
+}
+
+.create-quiz-question-button,
+.create-quiz-add-question-button {
+  font-size: 20px;
+  background-color: #ffffff;
+  color: rgba(159, 159, 159, 1);
+  border: none;
+  margin-right: 5px;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+  position: relative;
+}
+
+.create-quiz-question-button {
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+  font-family: "Poppins", sans-serif;
+}
+
+.create-quiz-question-button.active,
+.create-quiz-add-question-button:hover {
+  background-color: #ffffff;
+  color: rgba(159, 159, 159, 1);
+}
+
+.create-quiz-add-question-button {
+  font-size: 58px;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 13px;
+  color: rgba(159, 159, 159, 1);
+}
+
+.create-quiz-question-button-container {
+  position: relative;
+  margin-right: 10px; /* Add gap between question buttons */
+}
+
+.create-quiz-remove-question-button {
+  position: absolute;
+  top: 20px;
+  right: 5px;
+  width: 15px;
+  height: 15px;
+  background: url("../assets/cross.png") no-repeat center center;
+  background-size: contain;
   cursor: pointer;
 }
 
-.create-quiz-button:hover {
-  background-color: #ddd;
+.create-quiz-question-group {
+  margin-bottom: 20px;
 }
 
 .create-quiz-option-group {
@@ -64,61 +192,126 @@
   margin-bottom: 10px;
 }
 
-.create-quiz-option-group .create-quiz-input-text {
-  flex: 1;
+.create-quiz-option-group input[type="text"] {
+  flex: none; /* Remove flex-grow to allow fixed width */
   padding: 8px;
   margin-right: 10px;
-  border-radius: 4px;
+  border-radius: 8px;
   border: 1px solid #ccc;
-  width: 120px;
+  width: 296px; /* Decreased width */
+  background: rgba(255, 255, 255, 1);
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: rgba(159, 159, 159, 1);
 }
 
-.create-quiz-option-group .create-quiz-input-radio {
+.create-quiz-option-group.correct input[type="text"] {
+  background: rgba(96, 184, 75, 1); /* Highlight correct option */
+  color: rgba(255, 255, 255, 1); /* Change font color to white */
+}
+
+.create-quiz-option-group input[type="radio"] {
   margin-right: 10px;
 }
 
-.create-quiz-option-group .create-quiz-remove-button {
-  background-color: red;
-  color: white;
+.create-quiz-remove-option-button {
+  background: url("../assets/delete.png") no-repeat center center;
+  background-size: contain;
+  width: 24px;
+  height: 24px;
   border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
   cursor: pointer;
 }
 
-.create-quiz-option-group .create-quiz-remove-button:hover {
-  background-color: darkred;
-}
-
-.create-quiz-question-navigation {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.create-quiz-question-button,
-.create-quiz-add-question-button {
-  background-color: #f4f4f4;
+.create-quiz-add-option-button {
   border: 1px solid #ccc;
-  padding: 8px 16px;
-  margin-right: 5px;
+  padding: 8px 12px;
+  border-radius: 8px;
   cursor: pointer;
-  border-radius: 50%;
-  width: 35px;
-  height: 35px;
+  margin-top: 10px;
+  margin-left: -57%;
+  width: 296px;
+  background: rgba(255, 255, 255, 1);
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: rgba(159, 159, 159, 1);
+}
+
+.create-quiz-add-option-button:hover {
+  background-color: #218838;
+}
+
+.option-type-form-group {
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s;
+  justify-content: space-between;
 }
 
-.create-quiz-question-button.active,
-.create-quiz-add-question-button:hover {
-  background-color: #007bff;
+.option-type-form-group label {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: rgba(159, 159, 159, 1);
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.option-type-form-group input[type="radio"] {
+  margin-right: 10px;
+}
+
+.create-quiz-form-group select {
+  width: 296px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: rgba(159, 159, 159, 1);
+}
+
+.create-quiz-timer-group {
+  display: flex;
+  flex-direction: column; /* Arrange buttons in a column */
+  align-items: flex-start;
+  position: absolute;
+  padding: 0px;
+  top: 44%;
+  right: 28%;
+}
+
+.create-quiz-timer-group label {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: rgba(159, 159, 159, 1);
+  margin-left: 16px;
+}
+
+.create-quiz-timer-group button {
+  width: 95px;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.create-quiz-timer-group button.active {
+  background-color: rgba(214, 0, 0, 1);
+  box-shadow: 0px 0px 15px 0px rgba(255, 75, 75, 0.36);
   color: white;
 }
 
-.create-quiz-add-question-button {
-  font-size: 1.5em;
-  line-height: 1;
+.create-quiz-timer-group button:not(.active) {
+  background: rgba(255, 255, 255, 1);
+  color: rgba(159, 159, 159, 1);
+  box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.15); /* Shadow for unselected timer options */
 }
