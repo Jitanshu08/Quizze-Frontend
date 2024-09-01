@@ -36,7 +36,7 @@ body {
 /* Default anchor styling */
 a {
   font-weight: 500;
-  color: inherit; /* Allow color inheritance */
+  color: inherit; 
   text-decoration: inherit;
 }
 
@@ -47,8 +47,8 @@ a:hover {
 /* Basic body styling */
 body {
   display: flex;
-  align-items: center; /* Align items in the center */
-  justify-content: center; /* Center content horizontally */
+  align-items: center; 
+  justify-content: center; 
   min-width: 320px;
   min-height: 100vh;
 }

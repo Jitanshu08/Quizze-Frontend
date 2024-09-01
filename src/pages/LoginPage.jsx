@@ -50,7 +50,6 @@ const LoginPage = () => {
         );
 
         localStorage.setItem("token", response.data.token);
-        alert("Login successful!");
         setIsLoggedIn(true);
       } catch (error) {
         console.error("Error during login:", error.response.data);

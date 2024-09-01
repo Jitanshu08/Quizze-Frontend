@@ -30,10 +30,12 @@ const CreateQuizModal = ({ onClose }) => {
   };
 
   const handleContinue = () => {
-    if (quizName && quizType) {
-      setStep(2);
+    if (!quizName) {
+      alert("Please enter a quiz name.");
+    } else if (!quizType) {
+      alert("Please select a quiz type.");
     } else {
-      alert("Please enter a quiz name and select a quiz type.");
+      setStep(2);
     }
   };
 
@@ -344,7 +346,13 @@ const CreateQuizModal = ({ onClose }) => {
                     (option, oIndex) => (
                       <div
                         key={oIndex}
-                        className="create-quiz-option-group"
+                        className={`create-quiz-option-group ${
+                          quizType === "Q&A" &&
+                          questions[activeQuestionIndex].correctOption ===
+                            oIndex
+                            ? "correct"
+                            : ""
+                        }`}
                       >
                         {/* Conditionally render the radio button for Q&A type quizzes only */}
                         {quizType === "Q&A" && (

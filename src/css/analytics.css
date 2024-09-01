@@ -5,9 +5,9 @@
 
 /* Content area taking into account the space for the navbar */
 .analytics-content {
-  margin-left: 15%; /* Space for the navbar */
+  margin-left: 15%; 
   padding: 20px;
-  width: 90vw; /* Adjusted width to avoid horizontal scroll */
+  width: 90vw; 
   margin-top: 0px;
   padding-top: 0;
 }
@@ -26,15 +26,15 @@
 /* Table container to enable scrolling */
 .table-container {
   width: 100%;
-  max-height: 55vh; /* Limit the height for scrolling */
+  max-height: 55vh; 
   overflow-y: auto;
 }
 
 /* Make the table full width and ensure proper layout */
 .analytics-content table {
-  width: 100%; /* Increase table width to accommodate longer text */
+  width: 100%; 
   border-collapse: separate;
-  border-spacing: 0 10px; /* Add spacing between rows */
+  border-spacing: 0 10px; 
 }
 
 /* Style the table headers */
@@ -70,11 +70,11 @@
 /* Style the table body rows */
 .analytics-content table tbody tr {
   text-align: center; /* Center align the text */
-  background-color: rgba(237, 237, 237, 1); /* Set default background color */
+  background-color: rgba(237, 237, 237, 1); 
 }
 
 .analytics-content table tbody tr:nth-child(even) {
-  background-color: rgba(179, 196, 255, 1); /* Alternate row color */
+  background-color: rgba(179, 196, 255, 1); 
 }
 
 /* Style the table cells */
@@ -110,7 +110,7 @@
 }
 
 .analytics-content table tbody td button img {
-  width: 18px; /* Adjust the size of the icons */
+  width: 18px; 
   height: 18px;
 }
 
@@ -143,14 +143,14 @@
 
 /* Custom scrollbar for WebKit (Chrome, Safari) */
 .table-container::-webkit-scrollbar {
-  width: 10px; /* Make the scrollbar thinner */
+  width: 10px; 
 }
 
 .table-container::-webkit-scrollbar-thumb {
-  background-color: #5076ff; /* Thumb color */
-  border-radius: 5px; /* Round scrollbar thumb */
+  background-color: #5076ff; 
+  border-radius: 5px; 
 }
 
 .table-container::-webkit-scrollbar-track {
-  background-color: #f4f4f4; /* Track color */
+  background-color: #f4f4f4; 
 }

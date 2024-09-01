@@ -156,10 +156,16 @@ const EditQuizModal = ({ quiz, onClose, onSave }) => {
           </div>
         </div>
         <div className="edit-quiz-modal-actions">
-          <button className="edit-quiz-modal-button" onClick={onClose}>
+          <button
+            className="edit-quiz-modal-button edit-quiz-cancel-button"
+            onClick={onClose}
+          >
             Cancel
           </button>
-          <button className="edit-quiz-modal-button" onClick={handleSave}>
+          <button
+            className="edit-quiz-modal-button edit-quiz-save-button"
+            onClick={handleSave}
+          >
             Save Changes
           </button>
         </div>
