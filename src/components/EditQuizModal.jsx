@@ -18,9 +18,9 @@ const EditQuizModal = ({ quiz, onClose, onSave }) => {
     setQuestions(newQuestions);
   };
 
-  const handleOptionChange = (qIndex, oIndex, e) => {
+  const handleOptionChange = (qIndex, oIndex, e, field) => {
     const newQuestions = [...questions];
-    newQuestions[qIndex].options[oIndex] = e.target.value;
+    newQuestions[qIndex].options[oIndex][field] = e.target.value;
     setQuestions(newQuestions);
   };
 
@@ -94,13 +94,37 @@ const EditQuizModal = ({ quiz, onClose, onSave }) => {
                   : ""
               }`}
             >
-              <input
-                type="text"
-                value={option}
-                onChange={(e) =>
-                  handleOptionChange(activeQuestionIndex, oIndex, e)
-                }
-              />
+              {questions[activeQuestionIndex].optionType === "Text" ||
+              questions[activeQuestionIndex].optionType ===
+                "Text & Image URL" ? (
+                <input
+                  type="text"
+                  value={option.text}
+                  onChange={(e) =>
+                    handleOptionChange(activeQuestionIndex, oIndex, e, "text")
+                  }
+                  placeholder={`Text ${oIndex + 1}`}
+                  className="text-input"
+                />
+              ) : null}
+              {questions[activeQuestionIndex].optionType === "Image URL" ||
+              questions[activeQuestionIndex].optionType ===
+                "Text & Image URL" ? (
+                <input
+                  type="text"
+                  value={option.imageUrl}
+                  onChange={(e) =>
+                    handleOptionChange(
+                      activeQuestionIndex,
+                      oIndex,
+                      e,
+                      "imageUrl"
+                    )
+                  }
+                  placeholder={`Image URL ${oIndex + 1}`}
+                  className="image-input"
+                />
+              ) : null}
             </div>
           ))}
           <div className="edit-quiz-timer-group">

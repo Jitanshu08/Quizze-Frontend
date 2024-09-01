@@ -11,7 +11,10 @@ const CreateQuizModal = ({ onClose }) => {
   const [questions, setQuestions] = useState([
     {
       text: "",
-      options: ["", ""],
+      options: [
+        { text: "", imageUrl: "" },
+        { text: "", imageUrl: "" },
+      ], // Ensure at least two options initially
       correctOption: 0,
       timer: "off",
       optionType: "Text",
@@ -40,7 +43,10 @@ const CreateQuizModal = ({ onClose }) => {
         ...questions,
         {
           text: "",
-          options: ["", ""],
+          options: [
+            { text: "", imageUrl: "" },
+            { text: "", imageUrl: "" },
+          ], // Ensure new questions also have two options initially
           correctOption: 0,
           timer: "off",
           optionType: "Text",
@@ -64,16 +70,16 @@ const CreateQuizModal = ({ onClose }) => {
     setQuestions(newQuestions);
   };
 
-  const handleOptionChange = (qIndex, oIndex, e) => {
+  const handleOptionChange = (qIndex, oIndex, e, field) => {
     const newQuestions = [...questions];
-    newQuestions[qIndex].options[oIndex] = e.target.value;
+    newQuestions[qIndex].options[oIndex][field] = e.target.value;
     setQuestions(newQuestions);
   };
 
   const handleAddOption = (index) => {
     if (questions[index].options.length < 4) {
       const newQuestions = [...questions];
-      newQuestions[index].options.push("");
+      newQuestions[index].options.push({ text: "", imageUrl: "" });
       setQuestions(newQuestions);
     } else {
       alert("Maximum of 4 options per question allowed.");
@@ -82,9 +88,12 @@ const CreateQuizModal = ({ onClose }) => {
 
   const handleRemoveOption = (qIndex, oIndex) => {
     if (questions[qIndex].options.length > 2) {
+      // Ensure at least two options remain
       const newQuestions = [...questions];
       newQuestions[qIndex].options.splice(oIndex, 1);
       setQuestions(newQuestions);
+    } else {
+      alert("At least two options are required.");
     }
   };
 
@@ -104,14 +113,32 @@ const CreateQuizModal = ({ onClose }) => {
     const quizData = {
       title: quizName,
       quizCategory: quizType,
-      questions: questions.map((q) => ({
-        text: q.text,
-        type: quizType,
-        options: q.options,
-        optionType: q.optionType,
-        timer: q.timer === "off" ? 0 : q.timer,
-        correctOption: quizType === "Q&A" ? q.correctOption : undefined,
-      })),
+      questions: questions.map((q) => {
+        let formattedOptions;
+        if (q.optionType === "Text") {
+          formattedOptions = q.options.map((opt) => ({
+            text: opt.text,
+          }));
+        } else if (q.optionType === "Image URL") {
+          formattedOptions = q.options.map((opt) => ({
+            imageUrl: opt.imageUrl,
+          }));
+        } else if (q.optionType === "Text & Image URL") {
+          formattedOptions = q.options.map((opt) => ({
+            text: opt.text,
+            imageUrl: opt.imageUrl,
+          }));
+        }
+
+        return {
+          text: q.text,
+          type: quizType,
+          options: formattedOptions,
+          optionType: q.optionType,
+          timer: q.timer === "off" ? 0 : q.timer,
+          correctOption: quizType === "Q&A" ? q.correctOption : undefined,
+        };
+      }),
       quizStructure:
         questions.length > 1 ? "Multiple Questions" : "Single Question",
     };
@@ -338,14 +365,68 @@ const CreateQuizModal = ({ onClose }) => {
                             )
                           }
                         />
-                        <input
-                          type="text"
-                          value={option}
-                          onChange={(e) =>
-                            handleOptionChange(activeQuestionIndex, oIndex, e)
-                          }
-                          placeholder={`Option ${oIndex + 1}`}
-                        />
+                        {questions[activeQuestionIndex].optionType ===
+                        "Text" ? (
+                          <input
+                            type="text"
+                            value={option.text}
+                            onChange={(e) =>
+                              handleOptionChange(
+                                activeQuestionIndex,
+                                oIndex,
+                                e,
+                                "text"
+                              )
+                            }
+                            placeholder={`Text ${oIndex + 1}`}
+                          />
+                        ) : questions[activeQuestionIndex].optionType ===
+                          "Image URL" ? (
+                          <input
+                            type="text"
+                            value={option.imageUrl}
+                            onChange={(e) =>
+                              handleOptionChange(
+                                activeQuestionIndex,
+                                oIndex,
+                                e,
+                                "imageUrl"
+                              )
+                            }
+                            placeholder={`Image URL ${oIndex + 1}`}
+                          />
+                        ) : (
+                          <div className="text-image-inputs">
+                            <input
+                              type="text"
+                              value={option.text}
+                              onChange={(e) =>
+                                handleOptionChange(
+                                  activeQuestionIndex,
+                                  oIndex,
+                                  e,
+                                  "text"
+                                )
+                              }
+                              placeholder={`Text ${oIndex + 1}`}
+                              className="text-input"
+                            />
+                            <input
+                              type="text"
+                              value={option.imageUrl}
+                              onChange={(e) =>
+                                handleOptionChange(
+                                  activeQuestionIndex,
+                                  oIndex,
+                                  e,
+                                  "imageUrl"
+                                )
+                              }
+                              placeholder={`Image URL ${oIndex + 1}`}
+                              className="image-input"
+                            />
+                          </div>
+                        )}
                         {questions[activeQuestionIndex].options.length > 2 && (
                           <button
                             className="create-quiz-remove-option-button"

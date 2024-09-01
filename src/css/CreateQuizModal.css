@@ -162,7 +162,7 @@
   border: none;
   padding: 0;
   margin: 0;
-  margin-top: 13px;
+  margin-top: -6px;
   color: rgba(159, 159, 159, 1);
 }
 
@@ -173,7 +173,7 @@
 
 .create-quiz-remove-question-button {
   position: absolute;
-  top: 20px;
+  top: 0px;
   right: 5px;
   width: 15px;
   height: 15px;
@@ -198,7 +198,7 @@
   margin-right: 10px;
   border-radius: 8px;
   border: 1px solid #ccc;
-  width: 296px; /* Decreased width */
+  width: 270px; /* Decreased width */
   background: rgba(255, 255, 255, 1);
   font-family: "Poppins", sans-serif;
   font-size: 20px;
@@ -218,10 +218,11 @@
 .create-quiz-remove-option-button {
   background: url("../assets/delete.png") no-repeat center center;
   background-size: contain;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   border: none;
   cursor: pointer;
+  margin-left: 5px;
 }
 
 .create-quiz-add-option-button {
@@ -281,7 +282,7 @@
   position: absolute;
   padding: 0px;
   top: 44%;
-  right: 28%;
+  right: 23%;
 }
 
 .create-quiz-timer-group label {
@@ -302,6 +303,7 @@
   font-size: 15px;
   font-weight: 500;
   text-align: center;
+  margin-bottom: 10px;
 }
 
 .create-quiz-timer-group button.active {
@@ -314,4 +316,17 @@
   background: rgba(255, 255, 255, 1);
   color: rgba(159, 159, 159, 1);
   box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.15); /* Shadow for unselected timer options */
+}
+
+.create-quiz-option-group .text-image-inputs {
+  display: flex;
+  gap: 5px; /* Reduced gap between text and image URL fields */
+}
+
+.text-image-inputs .text-input {
+  width: 48%; /* Adjusted width to make space for the delete button */
+}
+
+.text-image-inputs .image-input {
+  width: 48%; /* Adjusted width to make space for the delete button */
 }

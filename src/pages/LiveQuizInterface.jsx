@@ -20,7 +20,6 @@ const LiveQuizInterface = () => {
         );
         setQuizData(response.data);
 
-        // Set the timer for both Q&A and Poll quizzes
         if (response.data.questions[0].timer) {
           setTimer(response.data.questions[0].timer);
         }
@@ -39,7 +38,7 @@ const LiveQuizInterface = () => {
       }, 1000);
       return () => clearInterval(timerId);
     } else if (timer === 0) {
-      handleNextOrSubmit(); // Automatically move to the next question or submit if it's the last one
+      handleNextOrSubmit();
     }
   }, [timer]);
 
@@ -53,7 +52,6 @@ const LiveQuizInterface = () => {
 
     try {
       if (selectedOption !== null) {
-        // Check if the selected option is correct for Q&A quizzes
         if (
           quizData.quizCategory === "Q&A" &&
           selectedOption === currentQuestion.correctOption
@@ -62,7 +60,6 @@ const LiveQuizInterface = () => {
           setScore(updatedScore);
         }
 
-        // Submit the current response immediately
         await axios.post(
           `http://localhost:5000/api/quizzes/response/${quizId}`,
           {
@@ -75,14 +72,13 @@ const LiveQuizInterface = () => {
           }
         );
       } else {
-        // If no option selected or timer ran out, mark as incorrect
         await axios.post(
           `http://localhost:5000/api/quizzes/response/${quizId}`,
           {
             answers: [
               {
                 question: currentQuestion._id,
-                selectedOption: -1, // Assuming -1 or null signifies an incorrect answer due to timeout
+                selectedOption: -1,
               },
             ],
           }
@@ -99,7 +95,6 @@ const LiveQuizInterface = () => {
           setTimer(null);
         }
       } else {
-        // Navigate to the appropriate completion page with the final score
         if (quizData.quizCategory === "Q&A") {
           navigate("/quiz-completion", {
             state: {
@@ -117,36 +112,49 @@ const LiveQuizInterface = () => {
     }
   };
 
+  const formatNumber = (number) => {
+    return number < 10 ? `0${number}` : number;
+  };
+
   if (!quizData) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className="live-quiz-container">
-      <h2>{quizData.title}</h2>
-      <div className="question-container">
-        <h3>{quizData.questions[currentQuestionIndex].text}</h3>
-        {timer !== null && <div className="timer">Time Left: {timer}s</div>}
-        <div className="options-container">
-          {quizData.questions[currentQuestionIndex].options.map(
-            (option, index) => (
+    <div className="full-screen-wrapper">
+      <div className="live-quiz-container">
+        <div className="question-header">
+          <span className="question-index">
+            {`${formatNumber(currentQuestionIndex + 1)}/${formatNumber(quizData.questions.length)}`}
+          </span>
+          {timer !== null && <span className="timer">{`00:${timer}s`}</span>}
+        </div>
+        <div className="question-container">
+          <h3>{quizData.questions[currentQuestionIndex].text}</h3>
+          <div className="options-container">
+            {quizData.questions[currentQuestionIndex].options.map((option, index) => (
               <div
                 key={index}
-                className={`option ${
-                  selectedOption === index ? "selected" : ""
-                }`}
+                className={`option ${selectedOption === index ? "selected" : ""}`}
                 onClick={() => handleOptionSelect(index)}
               >
-                {option}
+                {quizData.questions[currentQuestionIndex].optionType === "Text" && option.text}
+                {quizData.questions[currentQuestionIndex].optionType === "Image URL" && (
+                  <img src={option.imageUrl} alt={`Option ${index + 1}`} />
+                )}
+                {quizData.questions[currentQuestionIndex].optionType === "Text & Image URL" && (
+                  <div className="text-image-option">
+                    <span>{option.text}</span>
+                    <img src={option.imageUrl} alt={`Option ${index + 1}`} />
+                  </div>
+                )}
               </div>
-            )
-          )}
+            ))}
+          </div>
+          <button className="quiz-button" onClick={handleNextOrSubmit} disabled={selectedOption === null}>
+            {currentQuestionIndex + 1 === quizData.questions.length ? "Submit" : "Next"}
+          </button>
         </div>
-        <button onClick={handleNextOrSubmit} disabled={selectedOption === null}>
-          {currentQuestionIndex + 1 === quizData.questions.length
-            ? "Submit"
-            : "Next"}
-        </button>
       </div>
     </div>
   );

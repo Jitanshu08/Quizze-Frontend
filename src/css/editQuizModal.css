@@ -74,12 +74,12 @@
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  gap: 5px; /* Add some gap between text and image inputs */
 }
 
 .edit-quiz-option-group input[type="text"] {
   flex: none;
   padding: 8px;
-  margin-right: 10px;
   border-radius: 8px;
   border: 1px solid #ccc;
   background: rgba(255, 255, 255, 1);
@@ -87,6 +87,14 @@
   font-size: 20px;
   font-weight: 500;
   color: rgba(159, 159, 159, 1);
+}
+
+.edit-quiz-option-group .text-input {
+  width: 30%; /* Adjusted width for text input */
+}
+
+.edit-quiz-option-group .image-input {
+  width: 30%; /* Adjusted width for image input */
 }
 
 .edit-quiz-correct-option input[type="text"] {
