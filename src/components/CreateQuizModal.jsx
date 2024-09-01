@@ -108,6 +108,7 @@ const CreateQuizModal = ({ onClose }) => {
         text: q.text,
         type: quizType,
         options: q.options,
+        optionType: q.optionType,
         timer: q.timer === "off" ? 0 : q.timer,
         correctOption: quizType === "Q&A" ? q.correctOption : undefined,
       })),
@@ -341,11 +342,7 @@ const CreateQuizModal = ({ onClose }) => {
                           type="text"
                           value={option}
                           onChange={(e) =>
-                            handleOptionChange(
-                              activeQuestionIndex,
-                              oIndex,
-                              e
-                            )
+                            handleOptionChange(activeQuestionIndex, oIndex, e)
                           }
                           placeholder={`Option ${oIndex + 1}`}
                         />

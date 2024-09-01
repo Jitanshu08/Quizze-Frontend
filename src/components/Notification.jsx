@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "../css/Notification.css";
 import checkIcon from "../assets/check.png";
 
-const Notification = ({ message, onClose }) => {
+const Notification = ({ message, onClose, className }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose();
@@ -12,7 +12,7 @@ const Notification = ({ message, onClose }) => {
   }, [onClose]);
 
   return (
-    <div className="notification">
+    <div className={`notification ${className}`}>
       <div className="notification-icon">
         <img src={checkIcon} alt="Success" />
       </div>
