@@ -1,35 +1,49 @@
-/* Completion Page (Q&A) Styles */
-.quiz-completion-container {
+/* Full-Screen Wrapper for Completion Page */
+.quiz-full-screen-wrapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(4, 19, 37, 1); /* Full screen background color */
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #1a1a2e;
-  color: #fff;
-  border-radius: 10px;
-  padding: 50px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-  max-width: 500px;
-  margin: auto;
-  text-align: center;
 }
 
+/* Completion Page Container */
+.quiz-completion-container {
+  width: 1066px;
+  height: 643px;
+  background-color: #ffffff; /* Background color */
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Heading and Score Styles */
 .quiz-completion-container h2 {
-  font-size: 24px;
+  font-size: 40px;
+  color: #1a1a2e;
   margin-bottom: 20px;
 }
 
 .quiz-completion-container h3 {
-  font-size: 20px;
+  font-size: 32px;
+  color: #1a1a2e;
   margin-top: 20px;
 }
 
 .trophy-image {
-  width: 150px;
-  height: auto;
+  width: 320px;
+  height: 323px;
+  margin-top: 20px;
 }
 
 .score {
   color: #28a745;
   font-weight: bold;
+  font-size: 32px;
 }

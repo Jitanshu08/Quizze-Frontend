@@ -11,15 +11,17 @@ const QuizCompletionPage = () => {
   };
 
   return (
-    <div className="quiz-completion-container">
-      <h2>Congrats, Quiz is completed</h2>
-      <img src={trophyImage} alt="Trophy" className="trophy-image" />
-      <h3>
-        Your Score is{" "}
-        <span className="score" style={{ color: "#28a745" }}>
-          {score}/{totalQuestions}
-        </span>
-      </h3>
+    <div className="quiz-full-screen-wrapper">
+      <div className="quiz-completion-container">
+        <h2>Congrats Quiz is completed</h2>
+        <img src={trophyImage} alt="Trophy" className="trophy-image" />
+        <h3>
+          Your Score is{" "}
+          <span className="score">
+            {score}/{totalQuestions}
+          </span>
+        </h3>
+      </div>
     </div>
   );
 };
