@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import "../css/quizAnalysis.css";
+import "../css/QuizAnalysis.css";
 
 const QuizAnalysisPage = () => {
   const { quizId } = useParams();
