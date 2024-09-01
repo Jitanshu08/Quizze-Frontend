@@ -1,19 +1,31 @@
-.poll-completion-container {
-  background-color: #1a2e35; /* Royal blue background */
+/* Full-Screen Wrapper for Poll Completion Page */
+.poll-full-screen-wrapper {
+  width: 100vw;
   height: 100vh;
+  background-color: rgba(4, 19, 37, 1); /* Full screen background color */
   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Completion Page Container */
+.poll-completion-container {
+  width: 1066px;
+  height: 643px;
+  background-color: #ffffff; /* Background color */
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.poll-completion-box {
-  background-color: #ffffff; /* White box */
-  padding: 40px;
-  border-radius: 10px;
-  text-align: center;
-}
-
-.poll-completion-box h2 {
-  font-size: 24px;
-  color: #333333;
+/* Heading Styles */
+.poll-completion-container h2 {
+  font-size: 74px;
+  color: #1a1a2e;
+  margin: 0 150px;
 }
