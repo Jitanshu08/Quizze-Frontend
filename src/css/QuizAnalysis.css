@@ -119,3 +119,16 @@
   font-weight: 600;
   color: rgba(71, 68, 68, 1);
 }
+
+.poll-type .poll-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.poll-option-image {
+  max-width: 40%;
+  height: auto;
+  border-radius: 5px;
+}

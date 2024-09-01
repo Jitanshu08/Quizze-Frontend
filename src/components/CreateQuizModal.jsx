@@ -344,27 +344,25 @@ const CreateQuizModal = ({ onClose }) => {
                     (option, oIndex) => (
                       <div
                         key={oIndex}
-                        className={`create-quiz-option-group ${
-                          questions[activeQuestionIndex].correctOption ===
-                          oIndex
-                            ? "correct"
-                            : ""
-                        }`}
+                        className="create-quiz-option-group"
                       >
-                        <input
-                          type="radio"
-                          name={`correctOption-${activeQuestionIndex}`}
-                          checked={
-                            questions[activeQuestionIndex].correctOption ===
-                            oIndex
-                          }
-                          onChange={() =>
-                            handleCorrectOptionChange(
-                              activeQuestionIndex,
+                        {/* Conditionally render the radio button for Q&A type quizzes only */}
+                        {quizType === "Q&A" && (
+                          <input
+                            type="radio"
+                            name={`correctOption-${activeQuestionIndex}`}
+                            checked={
+                              questions[activeQuestionIndex].correctOption ===
                               oIndex
-                            )
-                          }
-                        />
+                            }
+                            onChange={() =>
+                              handleCorrectOptionChange(
+                                activeQuestionIndex,
+                                oIndex
+                              )
+                            }
+                          />
+                        )}
                         {questions[activeQuestionIndex].optionType ===
                         "Text" ? (
                           <input

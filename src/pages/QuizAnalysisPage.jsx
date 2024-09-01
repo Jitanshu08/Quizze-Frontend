@@ -102,7 +102,18 @@ const QuizAnalysisPage = () => {
                     analysis.options.map((optionData, optIndex) => (
                       <div key={optIndex} className="stat-box">
                         <p>{optionData.count}</p>
-                        <p>{optionData.option}</p>
+                        <div className="poll-option">
+                          {optionData.option.text && (
+                            <span>{optionData.option.text}</span>
+                          )}
+                          {optionData.option.imageUrl && (
+                            <img
+                              src={optionData.option.imageUrl}
+                              alt={`Option ${optIndex + 1}`}
+                              className="poll-option-image"
+                            />
+                          )}
+                        </div>
                       </div>
                     ))
                   )}

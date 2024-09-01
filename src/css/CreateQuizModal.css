@@ -231,7 +231,7 @@
   border-radius: 8px;
   cursor: pointer;
   margin-top: 10px;
-  margin-left: -57%;
+  margin-left: -60%;
   width: 296px;
   background: rgba(255, 255, 255, 1);
   font-family: "Poppins", sans-serif;
@@ -241,7 +241,8 @@
 }
 
 .create-quiz-add-option-button:hover {
-  background-color: #218838;
+  background-color: rgba(96, 184, 75, 1);
+  color: white;
 }
 
 .option-type-form-group {
