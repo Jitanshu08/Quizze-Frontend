@@ -24,9 +24,9 @@ const EditQuizModal = ({ quiz, onClose, onSave }) => {
     setQuestions(newQuestions);
   };
 
-  const handleTimerChange = (index, e) => {
+  const handleTimerChange = (index, time) => {
     const newQuestions = [...questions];
-    newQuestions[index].timer = e.target.value === "off" ? 0 : e.target.value;
+    newQuestions[index].timer = time === "off" ? 0 : parseInt(time);
     setQuestions(newQuestions);
   };
 
@@ -103,17 +103,32 @@ const EditQuizModal = ({ quiz, onClose, onSave }) => {
               />
             </div>
           ))}
-          <div className="edit-quiz-form-group">
+          <div className="edit-quiz-timer-group">
             <label className="edit-quiz-modal-label">Timer:</label>
-            <select
-              value={questions[activeQuestionIndex]?.timer || "off"}
-              onChange={(e) => handleTimerChange(activeQuestionIndex, e)}
-              className="edit-quiz-modal-select"
+            <button
+              className={`${
+                questions[activeQuestionIndex].timer === 0 ? "active" : ""
+              }`}
+              onClick={() => handleTimerChange(activeQuestionIndex, "off")}
             >
-              <option value="off">Off</option>
-              <option value="5">5 seconds</option>
-              <option value="10">10 seconds</option>
-            </select>
+              OFF
+            </button>
+            <button
+              className={`${
+                questions[activeQuestionIndex].timer === 5 ? "active" : ""
+              }`}
+              onClick={() => handleTimerChange(activeQuestionIndex, "5")}
+            >
+              5 sec
+            </button>
+            <button
+              className={`${
+                questions[activeQuestionIndex].timer === 10 ? "active" : ""
+              }`}
+              onClick={() => handleTimerChange(activeQuestionIndex, "10")}
+            >
+              10 sec
+            </button>
           </div>
         </div>
         <div className="edit-quiz-modal-actions">
