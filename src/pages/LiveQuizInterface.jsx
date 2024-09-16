@@ -16,7 +16,7 @@ const LiveQuizInterface = () => {
     const fetchQuizData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/quizzes/${quizId}`
+          `${import.meta.env.VITE_API_URL}/api/quizzes/${quizId}`
         );
         setQuizData(response.data);
 
@@ -61,7 +61,7 @@ const LiveQuizInterface = () => {
         }
 
         await axios.post(
-          `http://localhost:5000/api/quizzes/response/${quizId}`,
+          `${import.meta.env.VITE_API_URL}/api/quizzes/response/${quizId}`,
           {
             answers: [
               {
@@ -73,7 +73,7 @@ const LiveQuizInterface = () => {
         );
       } else {
         await axios.post(
-          `http://localhost:5000/api/quizzes/response/${quizId}`,
+          `${import.meta.env.VITE_API_URL}/api/quizzes/response/${quizId}`,
           {
             answers: [
               {

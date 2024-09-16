@@ -15,7 +15,7 @@ const DashboardPage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/quizzes/dashboard-data", {
+      .get(`${import.meta.env.VITE_API_URL}/api/quizzes/dashboard-data`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

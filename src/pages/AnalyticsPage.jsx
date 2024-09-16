@@ -44,7 +44,7 @@ function AnalyticsPage() {
         }
 
         const response = await axios.get(
-          "http://localhost:5000/api/quizzes/my-quizzes",
+          `${import.meta.env.VITE_API_URL}/api/quizzes/my-quizzes`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -97,7 +97,7 @@ function AnalyticsPage() {
     try {
       const token = localStorage.getItem("token");
       await axios.delete(
-        `http://localhost:5000/api/quizzes/${selectedQuiz._id}`,
+        `${import.meta.env.VITE_API_URL}/api/quizzes/${selectedQuiz._id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

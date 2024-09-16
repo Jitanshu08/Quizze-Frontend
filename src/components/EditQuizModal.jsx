@@ -40,7 +40,7 @@ const EditQuizModal = ({ quiz, onClose, onSave }) => {
       const token = localStorage.getItem("token");
 
       const response = await axios.put(
-        `http://localhost:5000/api/quizzes/${quiz._id}`,
+        `${import.meta.env.VITE_API_URL}/api/quizzes/${quiz._id}`,
         updatedQuiz,
         {
           headers: {

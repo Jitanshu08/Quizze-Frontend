@@ -15,7 +15,7 @@ const QuizAnalysisPage = () => {
         const token = localStorage.getItem("token");
 
         const response = await axios.get(
-          `http://localhost:5000/api/quizzes/${quizId}`,
+          `${import.meta.env.VITE_API_URL}/api/quizzes/${quizId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -33,7 +33,7 @@ const QuizAnalysisPage = () => {
         const token = localStorage.getItem("token");
 
         const response = await axios.get(
-          `http://localhost:5000/api/quizzes/analysis/${quizId}`,
+          `${import.meta.env.VITE_API_URL}/api/quizzes/analysis/${quizId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

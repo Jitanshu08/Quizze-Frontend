@@ -153,7 +153,7 @@ const CreateQuizModal = ({ onClose }) => {
       }
 
       const createResponse = await axios.post(
-        "http://localhost:5000/api/quizzes/create",
+        `${import.meta.env.VITE_API_URL}/api/quizzes/create`,
         quizData,
         {
           headers: {
@@ -164,7 +164,7 @@ const CreateQuizModal = ({ onClose }) => {
       const quizId = createResponse.data._id;
 
       const shareResponse = await axios.get(
-        `http://localhost:5000/api/quizzes/share/${quizId}`,
+        `${import.meta.env.VITE_API_URL}/api/quizzes/share/${quizId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -180,7 +180,7 @@ const CreateQuizModal = ({ onClose }) => {
       );
       alert(
         "Failed to create quiz. " +
-          (error.response ? error.response.data.message : "")
+          (error.response ? error.response.data.message : "Please try again.")
       );
     }
   };
