@@ -14,7 +14,7 @@ const CreateQuizModal = ({ onClose }) => {
       options: [
         { text: "", imageUrl: "" },
         { text: "", imageUrl: "" },
-      ], // Ensure at least two options initially
+      ], // Ensuring at least two options initially
       correctOption: 0,
       timer: "off",
       optionType: "Text",
@@ -48,7 +48,7 @@ const CreateQuizModal = ({ onClose }) => {
           options: [
             { text: "", imageUrl: "" },
             { text: "", imageUrl: "" },
-          ], // Ensure new questions also have two options initially
+          ], // Ensuring new questions also have two options initially
           correctOption: 0,
           timer: "off",
           optionType: "Text",
@@ -90,7 +90,7 @@ const CreateQuizModal = ({ onClose }) => {
 
   const handleRemoveOption = (qIndex, oIndex) => {
     if (questions[qIndex].options.length > 2) {
-      // Ensure at least two options remain
+      // Ensuring at least two options remain
       const newQuestions = [...questions];
       newQuestions[qIndex].options.splice(oIndex, 1);
       setQuestions(newQuestions);
@@ -354,7 +354,7 @@ const CreateQuizModal = ({ onClose }) => {
                             : ""
                         }`}
                       >
-                        {/* Conditionally render the radio button for Q&A type quizzes only */}
+                        {/* Conditionally rendering the radio button for Q&A type quizzes only */}
                         {quizType === "Q&A" && (
                           <input
                             type="radio"
