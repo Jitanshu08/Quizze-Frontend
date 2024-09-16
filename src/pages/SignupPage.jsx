@@ -60,9 +60,10 @@ const SignupPage = () => {
     if (validate()) {
       setIsLoading(true);
       try {
+        const { username, email, password } = formData;
         const response = await axios.post(
           `${import.meta.env.VITE_API_URL}/api/auth/register`,
-          formData
+          { username, email, password }
         );
         alert("Registration successful!");
         navigate("/login");
