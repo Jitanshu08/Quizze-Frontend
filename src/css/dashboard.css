@@ -54,15 +54,28 @@
   margin-top: 5px;
 }
 
-.dashboard-stat-box.quizzes {
+.dashboard-stat-box.questions {
+  text-align: left;
+  align-items: flex-start; 
+  padding-left: 20px; 
+}
+
+/* Color adjustments for each stat type */
+.dashboard-stat-box.quizzes h3,
+.dashboard-stat-box.quizzes .first-word,
+.dashboard-stat-box.quizzes p {
   color: rgba(255, 93, 1, 1);
 }
 
-.dashboard-stat-box.questions {
+.dashboard-stat-box.questions h3,
+.dashboard-stat-box.questions .first-word,
+.dashboard-stat-box.questions p {
   color: rgba(96, 184, 75, 1);
 }
 
-.dashboard-stat-box.impressions {
+.dashboard-stat-box.impressions h3,
+.dashboard-stat-box.impressions .first-word,
+.dashboard-stat-box.impressions p {
   color: rgba(80, 118, 255, 1);
 }
 
