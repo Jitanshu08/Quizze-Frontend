@@ -18,6 +18,7 @@ const LoginPage = () => {
   });
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,6 +44,7 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
+      setIsLoading(true); // Start loading
       try {
         const response = await axios.post(
           `${import.meta.env.VITE_API_URL}/api/auth/login`,
@@ -52,8 +54,10 @@ const LoginPage = () => {
         localStorage.setItem("token", response.data.token);
         setIsLoggedIn(true);
       } catch (error) {
-        console.error("Error during login:", error.response.data);
+        console.error("Error during login:", error.response?.data || error);
         alert("Login failed. Please check your credentials and try again.");
+      } finally {
+        setIsLoading(false); // Stop loading
       }
     }
   };
@@ -95,6 +99,7 @@ const LoginPage = () => {
               onFocus={handleFocus}
               className={errors.email ? "login-error-input" : ""}
               placeholder={errors.email || ""}
+              disabled={isLoading}
             />
           </div>
           <div className="login-form-group">
@@ -107,10 +112,15 @@ const LoginPage = () => {
               onFocus={handleFocus}
               className={errors.password ? "login-error-input" : ""}
               placeholder={errors.password || ""}
+              disabled={isLoading}
             />
           </div>
-          <button type="submit" className="login-submit-btn">
-            Log In
+          <button
+            type="submit"
+            className="login-submit-btn"
+            disabled={isLoading}
+          >
+            {isLoading ? "Logging in..." : "Log In"}
           </button>
         </form>
       </div>
