@@ -27,7 +27,7 @@
 
 .quiz-metadata {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   text-align: left;
   align-items: flex-start;
   margin-bottom: 20px;
@@ -95,13 +95,14 @@
   color: rgba(71, 68, 68, 1);
 }
 
+/* Changes made for poll-type quiz options */
 .poll-type .stat-box {
   width: 24%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 10px; 
+  gap: 10px;
 }
 
 .poll-type .stat-box p {
@@ -120,11 +121,16 @@
   color: rgba(71, 68, 68, 1);
 }
 
-.poll-type .poll-option {
+/* Styling for poll options specifically */
+.poll-option {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(71, 68, 68, 1);
 }
 
 .poll-option-image {
